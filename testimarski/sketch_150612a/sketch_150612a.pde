@@ -1,18 +1,24 @@
 Mbox[][] bGroups; // Create globally used valuables
 Diamond d1;
+Mbox bx1, bx2, bx3, bx4;
 
 void setup() {
   size(800, 600, P3D);
   //noStroke();
 
-  Mbox[][] bGroups1 = new Mbox[20][]; // Array of box group arrays, size 20
-  for (int i = -10; i < 10; i++) {
-    Mbox[] bG = makeBoxGroup(0,0,(float)100*i);
-    bGroups1[i+10] = bG; // Save to array
+  Mbox[][] bGroups1 = new Mbox[8][]; // Array of box group arrays
+  for (int i = -4; i < 4; i++) {
+    Mbox[] bG = makeBoxGroup(0,0,(float)300*i);
+    bGroups1[i+4] = bG; // Save to array
   }
 
   bGroups = bGroups1; // Save to global variable bGroups
   d1 = new Diamond(0, 0, 150);
+  
+  bx1 = new Mbox(200, 0, 0, 45);
+  bx2 = new Mbox(50, -50, 0, 45);
+  bx3 = new Mbox(50, -50, 0, 45);
+  bx4 = new Mbox(50, -50, 0, 45);
 }
 
 
@@ -49,6 +55,14 @@ void draw() {
       bGroups[j][i].display();
     }
   }
+  bx1.translate_(bx1.getPosX()+(cos((float)millis()/1000*2*PI)), bx1.getPosY(), bx1.getPosZ()+sin((float)millis()/1000*2*PI));
+  bx2.translate_(bx2.getPosX()+(cos((float)millis()/1000*2*PI)), bx2.getPosY(), bx2.getPosZ()+sin((float)millis()/1000*2*PI));
+  bx3.translate_(bx3.getPosX()+(cos((float)millis()/1000*2*PI)), bx3.getPosY(), bx3.getPosZ()+sin((float)millis()/1000*2*PI));
+  bx4.translate_(bx4.getPosX()+(cos((float)millis()/1000*2*PI)), bx4.getPosY(), bx4.getPosZ()+sin((float)millis()/1000*2*PI));
+  pushMatrix();
+  bx1.displayInMatrix(); bx2.displayInMatrix(); bx3.displayInMatrix(); bx4.displayInMatrix();
+  popMatrix();
+  
   // Diamond
   d1.rotate_x(sin(time/100)/2);
   d1.make_shape(d1.size);
@@ -115,6 +129,11 @@ class Mbox { // Class of a box
     rotate(rot);
     box(size);
     popMatrix();
+  }
+  void displayInMatrix() { // Moves the box in current matrix
+    translate(xpos, ypos, zpos);
+    rotate(rot);
+    box(size);
   }
 }
 
