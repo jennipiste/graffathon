@@ -1,4 +1,4 @@
-Mbox b1, b2, b3, b4, b5;
+Mbox b1, b2, b3, b4, b5; Diamond d1;
 
 void setup() {
   size(640, 480, P3D);
@@ -9,6 +9,7 @@ void setup() {
   b3 = new Mbox(-50, 0, 0, 20);
   b4 = new Mbox(0, 50, 0, 20);
   b5 = new Mbox(0, -50, 0, 20);
+  d1 = new Diamond(0, 0, 150);
 }
 
 
@@ -37,22 +38,14 @@ void draw() {
   b3.rotate_(PI*sin(time/1000));
   b4.rotate_(PI*sin(time/1000));
   b5.rotate_(PI*sin(time/1000));
+  d1.rotate_x(sin(time/1000));
   
-  pushMatrix();
   b1.display();
-  popMatrix();
-  pushMatrix();
   b2.display();
-  popMatrix();
-  pushMatrix();
   b3.display();
-  popMatrix();
-  pushMatrix();
   b4.display();
-  popMatrix();
-  pushMatrix();
   b5.display();
-  popMatrix();
+  d1.make_shape(d1.size);
 }
 
 class Mbox {
@@ -101,8 +94,124 @@ class Mbox {
   }
   
   void display() {
+    pushMatrix();
     translate(xpos, ypos, zpos);
     rotate(rot);
     box(size);
+    popMatrix();
   }
+}
+
+/*
+Diamond class
+
+by default fills sides, to disable noFill(); give override parameter true
+*/
+class Diamond 
+{
+    float x, y, z;
+    float size = 1;
+    float rotX = 0;
+
+    //Constructors
+    Diamond(float xcoord, float ycoord, float zcoord)
+    {
+        x = xcoord;
+        y = ycoord;
+        z = zcoord;
+        //translate( x, y, z);
+        make_shape(size);
+    }
+
+    Diamond(float xcoord, float ycoord, float zcoord, int disableFill)
+    {   
+        x = xcoord;
+        y = ycoord;
+        z = zcoord;
+        
+        //translate( x, y, z);
+        if(disableFill == 1)
+        {
+            noFill();
+        }
+        make_shape(size);
+    }
+    
+    Diamond(float xcoord, float ycoord, float zcoord,int disableFill, float size)
+    {   
+        x = xcoord;
+        y = ycoord;
+        z = zcoord;
+
+        //translate( x, y, z);
+        if(disableFill == 1)
+        {
+            noFill();
+        }
+        make_shape(size);
+    }
+    
+    void rotate_x(float angle) {
+      rotX = angle;
+    }
+
+
+    void make_shape(float size)
+    {
+        pushMatrix();
+        translate( x, y, z);
+        rotateX(rotX);
+        beginShape(TRIANGLES);
+        float h = 200*size;
+        float w = 50*size;
+        //==================TOP PYRAMIDE=============================
+        //Left
+        vertex(0, -h/2, 0);
+        vertex(-w/2, 0, -w/2);
+        vertex(-w/2, 0, w/2);
+
+        //back
+        vertex(0, -h/2, 0);
+        vertex(-w/2, 0, -w/2);
+        vertex(w/2, 0, -w/2);
+
+        //right
+        vertex(0, -h/2, 0);
+        vertex(-w/2, 0, w/2);
+        vertex(w/2, 0, w/2);
+
+        //front
+        vertex(0, -h/2, 0);
+        vertex(w/2, 0, w/2);
+        vertex(w/2, 0, -w/2);
+        //===========================================================
+
+
+        //=======================BOTTOM PYRAMIDE=========================
+        vertex(0, h/2, 0);
+        vertex(-w/2, 0, -w/2);
+        vertex(-w/2, 0, w/2);
+
+        //back
+        vertex(0, h/2, 0);
+        vertex(-w/2, 0, -w/2);
+        vertex(w/2, 0, -w/2);
+
+        //right
+        vertex(0, h/2, 0);
+        vertex(-w/2, 0, w/2);
+        vertex(w/2, 0, w/2);
+
+        //front
+        vertex(0, h/2, 0);
+        vertex(-w/2, 0, w/2);
+        vertex(w/2, 0, w/2);
+
+        vertex(0, h/2, 0);
+        vertex(w/2, 0, w/2);
+        vertex(w/2, 0, -w/2);
+        //===========================================================
+        endShape();
+        popMatrix();
+    }
 }
