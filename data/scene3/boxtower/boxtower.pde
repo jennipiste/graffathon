@@ -2,7 +2,6 @@ Mbox[][] bTowers;
 float camPosX, camPosY, camPosZ;
 float camCentX, camCentY, camCentZ;
 
-struct vector
 
 void setup () {
   size(800, 600, P3D);

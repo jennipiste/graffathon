@@ -1,4 +1,7 @@
 
+
+//=====================GLOBALS COS ITS FUN========================================
+
 // Camera start values float
 float camPosX = 400; 
 float camPosY = 400; 
@@ -7,6 +10,10 @@ float camCentX = 0;
 float camCentY = 0; 
 float camCentZ = 0;
 
+// FLAGS(fags)
+int scene = 1;
+
+//======================END OF GLOBALS COS ITS FUN================================
 void setup()
 {
     size(800, 600, P3D);
@@ -17,31 +24,72 @@ void setup()
 
 void draw()
 {
+    // Every loop
+    lights();
+    background(0);
+
+    println("(",camPosX,",",camPosY,",",camPosZ,")");
+
+
+    if(millis()<7000)
+    {
+        scene1();
+    }
+    else if(millis()<14000)
+    {
+        scene2();
+    }
+    else if(millis()<20000)
+    {
+        scene3();
+    }
+}
+
+void scene1()
+{
+
+    float time = (float)millis()/1000;
+
     beginCamera();
     camera(camPosX, camPosY, camPosZ, camCentX, camCentY, camCentZ, 0, 1, 0);
     endCamera();
-    // float time = (float)millis()/1000;
-    background(255);
-    // translate(width/2,height/2);
-    // fill(0);
-    // rotateY(PI/3+mouseY/float(height) * PI);
 
     DiamondStar n = new DiamondStar(0,0,0);
-    if(millis()<4000)
-    {
-        moveCamera(100.0, -400.0, 100.0, 0.0, 0.0, 0.0, 0, 1, 0, 50.0);
-    }
-    else
-    {
-        moveCamera(100.0, 400.0, 100.0, 0.0, 0.0, 0.0, 0, 1, 0, 50.0);
-    }
-    // Many diamond stars :)
-    // for (int i=0; i<10;i++)
-    // {
-    //     DiamondStar n = new DiamondStar(400*i ,0,0);
-    // }
+    moveCamera(100.0, -400.0, 100.0, 0.0, 0.0, 0.0, 0, 1, 0, 50.0);
 }
 
+void scene2()
+{
+    // Cam position
+    camPosX = 0;
+    camPosY = 500;
+    camPosZ = 0;
+    
+    //Needed for every scene!
+    beginCamera();
+    camera(camPosX, camPosY, camPosZ, camCentX, camCentY, camCentZ, 0, 1, 0);
+    endCamera();
+    moveCamera(0, 0, 0, 0.0, 0.0, 0.0, 1, 0, 0, 5.0);
+    
+    pushMatrix();
+    rotateY(millis()*PI/2000);
+    DiamondStar n = new DiamondStar(0,0,0);
+    popMatrix();
+}
+
+void scene3()
+{
+    // Cam position
+    camPosX = 0;
+    camPosY = 0;
+    camPosZ = 0;
+    
+    //Needed for every scene!
+    beginCamera();
+    camera(camPosX, camPosY, camPosZ, camCentX, camCentY, camCentZ, 0, 1, 0);
+    endCamera();
+    moveCamera(100.0, 400.0, 100.0, 0.0, 0.0, 0.0, 0, 1, 0, 5.0);
+}
 
 class DiamondStar
 {
