@@ -1,10 +1,14 @@
 PShape p;
 
+//Camera Globals
+float camPosX, camPosY, camPosZ;
+float camCentX, camCentY, camCentZ;
+
 void setup()
 {
     size(800, 600, P3D);
     //noStroke();
-    p = loadShape("rapu.obj");
+    // p = loadShape("rapu.obj");
 }
 
 void draw()
@@ -13,11 +17,11 @@ void draw()
     float time = (float)millis()/1000;
     background(0);
     translate(width/2,height/2);
-    rotateY(time*PI);
-    shape(p, 100, 100);
+    // rotateY(time*PI);
+    // shape(p, 100, 100);
     // fill(0, 51, 102);
     
-    // Diamond a = new Diamond(0,0,0);
+    Diamond a = new Diamond(0,0,0);
     // Diamond b = new Diamond(50,0,0);
     // Diamond c = new Diamond(-50,0,0);
     // Diamond b = new Diamond(10,20,30);
@@ -125,4 +129,36 @@ class Diamond
         endShape();
         popMatrix();
     }
+}
+
+// Move camera smoothly
+void moveCamera (float posX, float posY, float posZ, float centerX, float centerY, float centerZ, float upX, float upY, float upZ, float damping) 
+{ // Move smoothly to a pos
+    // Position
+    float dif = camPosY - posY;
+    if (abs(dif) > 1) {
+      camPosY -= dif/damping;
+    }
+    dif = camPosX - posX;
+    if (abs(dif) > 1) {
+      camPosX -= dif/damping;
+    }
+    dif = camPosZ - posZ;
+    if (abs(dif) > 1) {
+      camPosZ -= dif/damping;
+    }
+    // View center
+    dif = camCentY - centerY;
+    if (abs(dif) > 1) {
+      camCentY -= dif/damping;
+    }
+    dif = camCentX - centerX;
+    if (abs(dif) > 1) {
+      camCentX -= dif/damping;
+    }
+    dif = camCentZ - centerZ;
+    if (abs(dif) > 1) {
+      camCentZ -= dif/damping;
+    }
+    camera(camPosX, camPosY, camPosZ, camCentX, camCentY, camCentZ, upX, upY, upZ);
 }
