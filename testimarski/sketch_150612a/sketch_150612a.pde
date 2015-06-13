@@ -1,14 +1,17 @@
-Mbox b1, b2, b3, b4, b5; Diamond d1;
+Mbox[][] bGroups; // Create globally used valuables
+Diamond d1;
 
 void setup() {
-  size(640, 480, P3D);
+  size(800, 600, P3D);
   //noStroke();
-  
-  b1 = new Mbox(0, 0, 0, 45);
-  b2 = new Mbox(50, 0, 0, 20);
-  b3 = new Mbox(-50, 0, 0, 20);
-  b4 = new Mbox(0, 50, 0, 20);
-  b5 = new Mbox(0, -50, 0, 20);
+
+  Mbox[][] bGroups1 = new Mbox[20][]; // Array of box group arrays, size 20
+  for (int i = -10; i < 10; i++) {
+    Mbox[] bG = makeBoxGroup(0,0,(float)100*i);
+    bGroups1[i+10] = bG; // Save to array
+  }
+
+  bGroups = bGroups1; // Save to global variable bGroups
   d1 = new Diamond(0, 0, 150);
 }
 
@@ -28,32 +31,45 @@ void draw() {
   rotateX(-PI/6);
   rotateY(PI/3 + mouseY/float(height) * PI);
   
-  b2.translate_(cos((float)millis()/1000) * 50, sin((float)millis()/1000) * 50, 0);
-  //b2.translate_(b2.getPosX()+sin((float)millis()/1000), b2.getPosY()+cos((float)millis()/1000), 0);
-  b3.translate_(cos((float)millis()/1000+PI) * 50, sin((float)millis()/1000+PI) * 50, 0);
-  b4.translate_(cos((float)millis()/1000-HALF_PI) * 50, sin((float)millis()/1000-HALF_PI) * 50, 0);
-  b5.translate_(cos((float)millis()/1000+HALF_PI) * 50, sin((float)millis()/1000+HALF_PI) * 50, 0);
-  b1.rotate_(PI*sin(time/1000));
-  b2.rotate_(PI*sin(time/1000));
-  b3.rotate_(PI*sin(time/1000));
-  b4.rotate_(PI*sin(time/1000));
-  b5.rotate_(PI*sin(time/1000));
-  d1.rotate_x(sin(time/1000));
+  for (int j = 0; j < bGroups.length; j++) { // All box groups
+    // Translation for circular movement: start position(big box center) + cos/sin of time * radius
   
-  b1.display();
-  b2.display();
-  b3.display();
-  b4.display();
-  b5.display();
+    bGroups[j][1].translate_(bGroups[j][0].getPosX()+cos((float)millis()/1000) * 50, bGroups[j][0].getPosY()+sin((float)millis()/1000) * 50, bGroups[j][1].getPosZ());
+    //b2.translate_(b2.getPosX()+sin((float)millis()/1000), b2.getPosY()+cos((float)millis()/1000), 0);
+    bGroups[j][2].translate_(bGroups[j][0].getPosX()+cos((float)millis()/1000+PI) * 50, bGroups[j][0].getPosY()+sin((float)millis()/1000+PI) * 50, bGroups[j][2].getPosZ());
+    bGroups[j][3].translate_(bGroups[j][0].getPosX()+cos((float)millis()/1000-HALF_PI) * 50, bGroups[j][0].getPosY()+sin((float)millis()/1000-HALF_PI) * 50, bGroups[j][3].getPosZ());
+    bGroups[j][4].translate_(bGroups[j][0].getPosX()+cos((float)millis()/1000+HALF_PI) * 50, bGroups[j][0].getPosY()+sin((float)millis()/1000+HALF_PI) * 50, bGroups[j][4].getPosZ());
+    bGroups[j][0].rotate_(PI*sin(time/1000));
+    bGroups[j][1].rotate_(PI*sin(time/1000));
+    bGroups[j][2].rotate_(PI*sin(time/1000));
+    bGroups[j][3].rotate_(PI*sin(time/1000));
+    bGroups[j][4].rotate_(PI*sin(time/1000));
+    
+    for (int i = 0; i < bGroups[j].length; i++) { // Display all boxes in the group
+      bGroups[j][i].display();
+    }
+  }
+  // Diamond
+  d1.rotate_x(sin(time/100)/2);
   d1.make_shape(d1.size);
 }
 
-class Mbox {
+Mbox[] makeBoxGroup(float x, float y, float z) { // Move all boxes due to xyz
+  Mbox b1 = new Mbox(0+x, 0+y, 0+z, 45);
+  Mbox b2 = new Mbox(50+x, 0+y, 0+z, 20);
+  Mbox b3 = new Mbox(-50+x, 0+y, 0+z, 20);
+  Mbox b4 = new Mbox(0+x, 50+y, 0+z, 20);
+  Mbox b5 = new Mbox(0+x, -50+y, 0+z, 20);
+  Mbox[] array = {b1, b2, b3, b4, b5};
+  return array;
+}
+
+class Mbox { // Class of a box
   float xpos;
   float ypos;
   float zpos;
   float size;
-  float rot = 0;
+  float rot = 0; // Rotation
   
   Mbox(float posX, float posY, float posZ, float sz) {
     xpos = posX;
@@ -72,7 +88,7 @@ class Mbox {
     return zpos;
   }
   
-  void move (float posX, float posY, float damping) {
+  void move (float posX, float posY, float damping) { // Move smoothly to a pos
     float dif = ypos - posY;
     if (abs(dif) > 1) {
       ypos -= dif/damping;
@@ -83,7 +99,7 @@ class Mbox {
     }
   }
   
-  void translate_(float x, float y, float z) {
+  void translate_(float x, float y, float z) { // Saves coordinates, doesn't draw
     xpos = x;
     ypos = y;
     zpos = z;
@@ -93,7 +109,7 @@ class Mbox {
     rot = angle;
   }
   
-  void display() {
+  void display() { // Moves the box in an own matrix
     pushMatrix();
     translate(xpos, ypos, zpos);
     rotate(rot);
