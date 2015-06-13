@@ -1,7 +1,11 @@
+PShader plasma;
+
 void setup()
 {
     size(800,600,P3D);
     stroke(255);
+    plasma=loadShader("plasma.glsl");
+    
 }
 
 void draw()
