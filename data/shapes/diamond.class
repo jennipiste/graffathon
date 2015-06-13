@@ -9,36 +9,36 @@ class Diamond
     float size = 1;
 
     //Constructors
-    Diamond(float x, float y, float z)
+    Diamond(float xcoord, float ycoord, float zcoord)
     {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        translate( this.x, this.y, this.z);
-        make_shape(this.size)     
+        x = xcoord;
+        y = ycoord;
+        z = zcoord;
+        translate( x, y, z);
+        make_shape(size);
     }
 
-    Diamond(float x, float y, float z,bool disableFill)
+    Diamond(float xcoord, float ycoord, float zcoord, bool disableFill)
     {   
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        x = xcoord;
+        y = ycoord;
+        z = zcoord;
         
-        translate( this.x, this.y, this.z);
+        translate( x, y, z);
         if(disableFill)
         {
             noFill();
         }
-        make_shape(this.size)
+        make_shape(size)
     }
     
-    Diamond(float x, float y, float z,bool disableFill, float size)
+    Diamond(float xcoord, float ycoord, float zcoord,bool disableFill, float size)
     {   
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        
-        translate( this.x, this.y, this.z);
+        x = xcoord;
+        y = ycoord;
+        z = zcoord;
+
+        translate( x, y, z);
         if(disableFill)
         {
             noFill();
