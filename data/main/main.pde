@@ -377,7 +377,7 @@ void scene2()
 
 void scene3()
 {
-
+    rain();
     beginCamera();
     camera(camPosX, camPosY, camPosZ, camCentX, camCentY, camCentZ, 0, 1, 0);
     endCamera();
@@ -389,6 +389,7 @@ void scene3()
 void scene4()
 {
     // Cam position
+    rain();
     camPosX = 0;
     camPosY = 500;
     camPosZ = 0;
