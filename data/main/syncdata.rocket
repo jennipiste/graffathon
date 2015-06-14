@@ -1,11 +1,10 @@
 <sync rows="512">
 	<tracks>
 		<track name="scene">
-			<key row="0" interpolation="0" value="1"/>
+			<key row="48" interpolation="0" value="1"/>
 		</track>
 		<track name="scene_1_subscene">
-			<key row="0" interpolation="0" value="1"/>
-			<key row="16" interpolation="0" value="2"/>
+			<key row="48" interpolation="0" value="1"/>
 			<key row="56" interpolation="0" value="3"/>
 			<key row="64" interpolation="0" value="4"/>
 			<key row="112" interpolation="0" value="5"/>
@@ -19,8 +18,7 @@
 			<key row="288" interpolation="0" value="10"/>
 		</track>
 		<track name="face">
-			<key row="0" interpolation="0" value="1"/>
-			<key row="48" interpolation="0" value="2"/>
+			<key row="48" interpolation="0" value="1"/>
 			<key row="64" interpolation="0" value="1"/>
 			<key row="112" interpolation="0" value="3"/>
 			<key row="113" interpolation="0" value="2"/>
@@ -45,7 +43,7 @@
 			<key row="320" interpolation="0" value="1"/>
 		</track>
 		<track name="bg_clr_r">
-			<key row="0" interpolation="0" value="20"/>
+			<key row="48" interpolation="0" value="20"/>
 			<key row="112" interpolation="2" value="255"/>
 			<key row="119" interpolation="0" value="20"/>
 			<key row="120" interpolation="2" value="255"/>
@@ -65,8 +63,7 @@
 			<key row="319" interpolation="0" value="0"/>
 		</track>
 		<track name="bg_clr_g">
-			<key row="0" interpolation="0" value="30"/>
-			<key row="48" interpolation="0" value="50"/>
+			<key row="48" interpolation="0" value="30"/>
 			<key row="112" interpolation="2" value="0"/>
 			<key row="119" interpolation="0" value="30"/>
 			<key row="120" interpolation="2" value="0"/>
@@ -84,8 +81,7 @@
 			<key row="319" interpolation="0" value="0"/>
 		</track>
 		<track name="bg_clr_b">
-			<key row="0" interpolation="0" value="50"/>
-			<key row="48" interpolation="0" value="70"/>
+			<key row="48" interpolation="0" value="50"/>
 			<key row="64" interpolation="0" value="50"/>
 			<key row="112" interpolation="2" value="60"/>
 			<key row="119" interpolation="0" value="50"/>
@@ -104,8 +100,7 @@
 			<key row="319" interpolation="0" value="0"/>
 		</track>
 		<track name="pyoritin">
-			<key row="0" interpolation="0" value="2"/>
-			<key row="48" interpolation="0" value="15"/>
+			<key row="48" interpolation="0" value="2"/>
 			<key row="64" interpolation="0" value="2"/>
 			<key row="112" interpolation="0" value="15"/>
 			<key row="128" interpolation="0" value="2"/>
