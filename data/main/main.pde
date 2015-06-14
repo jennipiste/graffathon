@@ -51,7 +51,7 @@ void setup()
 {
 
     // For all
-    size(800, 600, P3D);
+    size(1360, 768, P3D);
 
     // LOAD IMAGES
     happy = loadImage("happy.jpg");
@@ -111,15 +111,11 @@ void draw()
 
 
     // Main scene selector(MOONLANDER)
-    if(scene==0)
-    {
-        scene0();
-    }
     if(scene==1)
     {
         scene1();
     }
-    else if(scene==2)
+    if(scene==2)
     {
         scene2();
     }
@@ -135,11 +131,6 @@ void draw()
     {
         scene5();
     }
-}
-
-void scene0()
-{
-    loadCrab();
 }
 
 void scene1()
@@ -655,12 +646,5 @@ Mbox[] makeBoxTower(float x, float y, float z) {
   Mbox[] array = {b1, b2, b3, b4, b5};
   return array;
 }
-
-void loadCrab()
-{
-
-    return;
-}
-
 // ====================================================================================================================================================
 //========================================================================================================================================================
