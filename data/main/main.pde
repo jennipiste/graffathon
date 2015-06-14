@@ -25,6 +25,9 @@ int face = 1; //1 happy 2 sad 3 demon
 int bg_clr_r = 0;
 int bg_clr_g = 0;
 int bg_clr_b = 0;
+int di_clr_r = 0;
+int di_clr_g = 0;
+int di_clr_b = 0;
 int scene_2_subscene = 1;
 int pyoritin = 2;
 
@@ -127,6 +130,10 @@ void draw()
     bg_clr_r = moonlander.getIntValue("bg_clr_r");
     bg_clr_g = moonlander.getIntValue("bg_clr_g");
     bg_clr_b = moonlander.getIntValue("bg_clr_b");
+
+    di_clr_r = moonlander.getIntValue("di_clr_r");
+    di_clr_g = moonlander.getIntValue("di_clr_g");
+    di_clr_b = moonlander.getIntValue("di_clr_b");
 
     pyoritin = moonlander.getIntValue("pyoritin");
 
@@ -323,17 +330,15 @@ void scene2()
     // sphere(700);
     popMatrix();
 
-    println("SUBSCENE: " + scene_2_subscene);
-    println("ROTATION: "+ rotation);
-    println("scene2_time: "+scene2_time);
     pushMatrix();
     if (scene_2_subscene >= 3) {
 
         moveCamera(800.0, -800.0, 0.0, 0.0, -1000.0, 0.0, 0, 1, 0, 20.0);
         // rotateX(5*sin(time*0.5));
         if (scene_2_subscene >= 13) {
-            rotate(time);
-            rotateY(time);
+            // rotate(time);
+            // rotateY(time);
+            fill(di_clr_r, di_clr_g, di_clr_b);
         }
         DiamondStar n = new DiamondStar(200,-1000,0);
     }
@@ -351,6 +356,19 @@ void scene2()
             if (scene_2_subscene >= 13) {
                 rotate(time);
                 rotateY(time);
+                fill(random(0, 255), random(0, 255), random(0, 255));
+            }
+            rotateX(5*sin(time*0.5));
+            DiamondStar n3 = new DiamondStar(200, -1000, 0);
+        popMatrix();
+    }
+    if (scene_2_subscene >= 5) {
+        pushMatrix();
+            translate(200, -600, 500);
+            if (scene_2_subscene >= 13) {
+                rotate(time);
+                rotateY(time);
+                fill(random(0, 255), random(0, 255), random(0, 255));
             }
             rotateX(5*sin(time*0.5));
             DiamondStar n3 = new DiamondStar(200, -1000, 0);
@@ -362,16 +380,40 @@ void scene2()
             if (scene_2_subscene >= 13) {
                 rotate(time);
                 rotateZ(time);
+                fill(random(0, 255), random(0, 255), random(0, 255));
             }
         DiamondStar n4 = new DiamondStar(-900, -1000, 0);
         popMatrix();
     }
     if (scene_2_subscene >= 7) {
         pushMatrix();
-            translate(80, -50, -100);
+            translate(80, -50, -700);
             if (scene_2_subscene >= 13) {
                 rotate(time);
                 rotateX(time);
+                fill(random(0, 255), random(0, 255), random(0, 255));
+            }
+            DiamondStar n5 = new DiamondStar(-900, -1000, 0);
+        popMatrix();
+    }
+    if (scene_2_subscene >= 6) {
+        pushMatrix();
+            translate(20, -100, 800);
+            if (scene_2_subscene >= 13) {
+                rotate(time);
+                rotateZ(time);
+                fill(random(0, 255), random(0, 255), random(0, 255));
+            }
+        DiamondStar n4 = new DiamondStar(-900, -1000, 0);
+        popMatrix();
+    }
+    if (scene_2_subscene >= 7) {
+        pushMatrix();
+            translate(80, -50, 600);
+            if (scene_2_subscene >= 13) {
+                rotate(time);
+                rotateX(time);
+                fill(random(0, 255), random(0, 255), random(0, 255));
             }
             DiamondStar n5 = new DiamondStar(-900, -1000, 0);
         popMatrix();
@@ -382,6 +424,7 @@ void scene2()
             if (scene_2_subscene >= 13) {
                 rotate(time);
                 rotateY(time);
+                fill(random(0, 255), random(0, 255), random(0, 255));
             }
             DiamondStar n6 = new DiamondStar(-900, -1000, 0);
         popMatrix();
@@ -392,6 +435,29 @@ void scene2()
             if (scene_2_subscene >= 13) {
                 rotate(time);
                 rotateZ(time);
+                fill(random(0, 255), random(0, 255), random(0, 255));
+            }
+            DiamondStar n7 = new DiamondStar(-900, -1000, 0);
+        popMatrix();
+    }
+    if (scene_2_subscene >= 10) {
+        pushMatrix();
+            translate(400, 100, -400);
+            if (scene_2_subscene >= 13) {
+                rotate(time);
+                rotateY(time);
+                fill(random(0, 255), random(0, 255), random(0, 255));
+            }
+            DiamondStar n7 = new DiamondStar(-900, -1000, 0);
+        popMatrix();
+    }
+    if (scene_2_subscene >= 9) {
+        pushMatrix();
+            translate(700, 600, -700);
+            if (scene_2_subscene >= 13) {
+                rotate(time);
+                rotateX(time);
+                fill(random(0, 255), random(0, 255), random(0, 255));
             }
             DiamondStar n7 = new DiamondStar(-900, -1000, 0);
         popMatrix();
@@ -402,16 +468,18 @@ void scene2()
             if (scene_2_subscene >= 13) {
                 rotate(time);
                 rotateZ(time);
+                fill(random(0, 255), random(0, 255), random(0, 255));
             }
             DiamondStar n7 = new DiamondStar(-900, -1000, 0);
         popMatrix();
     }
     if (scene_2_subscene >= 11) {
         pushMatrix();
-            translate(0, -400, 400);
+            translate(0, -400, 600);
             if (scene_2_subscene >= 13) {
                 rotate(time);
-                rotateZ(time);
+                rotateX(time);
+                fill(random(0, 255), random(0, 255), random(0, 255));
             }
             DiamondStar n7 = new DiamondStar(-900, -1000, 0);
         popMatrix();
@@ -421,7 +489,8 @@ void scene2()
             translate(200, 50, -200);
             if (scene_2_subscene >= 13) {
                 rotate(time);
-                rotateZ(time);
+                rotateY(time);
+                fill(random(0, 255), random(0, 255), random(0, 255));
             }
             DiamondStar n7 = new DiamondStar(-900, -1000, 0);
         popMatrix();

@@ -3,6 +3,7 @@
 		<track name="scene">
 			<key value="0" interpolation="0" row="0"/>
 			<key value="1" interpolation="0" row="48"/>
+			<key value="2" interpolation="0" row="320"/>
 			<key value="3" interpolation="0" row="768"/>
 			<key value="4" interpolation="0" row="792"/>
 			<key value="4" interpolation="0" row="800"/>
@@ -22,7 +23,6 @@
 			<key value="4" interpolation="0" row="1008"/>
 			<key value="3" interpolation="0" row="1024"/>
 			<key value="4" interpolation="0" row="1040"/>
-
 		</track>
 		<track name="scene_1_subscene">
 			<key value="1" interpolation="0" row="48"/>
@@ -120,7 +120,6 @@
 			<key value="255" interpolation="1" row="1088"/>
 			<key value="0" interpolation="1" row="1089"/>
 			<key value="255" interpolation="0" row="1138"/>
-
 		</track>
 		<track name="bg_clr_g">
 			<key value="30" interpolation="0" row="48"/>
@@ -196,7 +195,6 @@
 			<key value="60" interpolation="0" row="303"/>
 			<key value="20" interpolation="2" row="304"/>
 			<key value="0" interpolation="0" row="319"/>
-
 			<key value="0" interpolation="0" row="912"/>
 			<key value="0" interpolation="0" row="920"/>
 			<key value="255" interpolation="2" row="928"/>
@@ -262,7 +260,6 @@
 			<key value="11" interpolation="0" row="536"/>
 			<key value="12" interpolation="0" row="552"/>
 			<key value="13" interpolation="0" row="576"/>
-
 		</track>
 		<track name="intro_opa">
 			<key value="100" interpolation="2" row="0"/>
@@ -272,6 +269,105 @@
 			<key value="1" interpolation="2" row="0"/>
 			<key value="40" interpolation="0" row="47"/>
 			<key value="1" interpolation="0" row="768"/>
+		</track>
+		<track name="di_clr_r">
+			<key value="255" interpolation="2" row="576"/>
+			<key value="0" interpolation="3" row="584"/>
+			<key value="0" interpolation="2" row="592"/>
+			<key value="255" interpolation="0" row="600"/>
+			<key value="255" interpolation="2" row="601"/>
+			<key value="0" interpolation="3" row="609"/>
+			<key value="0" interpolation="2" row="617"/>
+			<key value="255" interpolation="0" row="625"/>
+			<key value="0" interpolation="2" row="630"/>
+			<key value="12" interpolation="3" row="638"/>
+			<key value="255" interpolation="2" row="646"/>
+			<key value="255" interpolation="0" row="654"/>
+			<key value="255" interpolation="2" row="655"/>
+			<key value="0" interpolation="3" row="663"/>
+			<key value="0" interpolation="2" row="671"/>
+			<key value="255" interpolation="0" row="679"/>
+			<key value="255" interpolation="2" row="680"/>
+			<key value="0" interpolation="3" row="688"/>
+			<key value="0" interpolation="2" row="696"/>
+			<key value="255" interpolation="0" row="704"/>
+			<key value="255" interpolation="2" row="705"/>
+			<key value="0" interpolation="3" row="713"/>
+			<key value="0" interpolation="2" row="721"/>
+			<key value="255" interpolation="0" row="729"/>
+			<key value="255" interpolation="2" row="730"/>
+			<key value="0" interpolation="3" row="738"/>
+			<key value="0" interpolation="2" row="746"/>
+			<key value="255" interpolation="0" row="754"/>
+			<key value="255" interpolation="2" row="755"/>
+			<key value="0" interpolation="3" row="763"/>
+			<key value="5" interpolation="0" row="767"/>
+		</track>
+		<track name="di_clr_g">
+			<key value="255" interpolation="2" row="576"/>
+			<key value="0" interpolation="2" row="584"/>
+			<key value="255" interpolation="2" row="592"/>
+			<key value="0" interpolation="0" row="600"/>
+			<key value="255" interpolation="2" row="601"/>
+			<key value="0" interpolation="2" row="609"/>
+			<key value="255" interpolation="2" row="617"/>
+			<key value="0" interpolation="0" row="625"/>
+			<key value="0" interpolation="2" row="630"/>
+			<key value="234" interpolation="2" row="638"/>
+			<key value="67" interpolation="2" row="646"/>
+			<key value="0" interpolation="0" row="654"/>
+			<key value="255" interpolation="2" row="655"/>
+			<key value="0" interpolation="2" row="663"/>
+			<key value="255" interpolation="2" row="671"/>
+			<key value="0" interpolation="0" row="679"/>
+			<key value="255" interpolation="2" row="680"/>
+			<key value="0" interpolation="2" row="688"/>
+			<key value="255" interpolation="2" row="696"/>
+			<key value="0" interpolation="0" row="704"/>
+			<key value="255" interpolation="2" row="705"/>
+			<key value="0" interpolation="2" row="713"/>
+			<key value="255" interpolation="2" row="721"/>
+			<key value="0" interpolation="0" row="729"/>
+			<key value="255" interpolation="2" row="730"/>
+			<key value="0" interpolation="2" row="738"/>
+			<key value="255" interpolation="2" row="746"/>
+			<key value="0" interpolation="0" row="754"/>
+			<key value="255" interpolation="2" row="755"/>
+			<key value="0" interpolation="2" row="763"/>
+			<key value="55" interpolation="0" row="767"/>
+		</track>
+		<track name="di_clr_b">
+			<key value="255" interpolation="2" row="576"/>
+			<key value="255" interpolation="3" row="584"/>
+			<key value="0" interpolation="2" row="592"/>
+			<key value="255" interpolation="0" row="600"/>
+			<key value="255" interpolation="2" row="601"/>
+			<key value="255" interpolation="3" row="609"/>
+			<key value="0" interpolation="2" row="617"/>
+			<key value="255" interpolation="0" row="625"/>
+			<key value="255" interpolation="2" row="630"/>
+			<key value="255" interpolation="3" row="638"/>
+			<key value="0" interpolation="2" row="646"/>
+			<key value="255" interpolation="0" row="654"/>
+			<key value="255" interpolation="2" row="655"/>
+			<key value="255" interpolation="3" row="663"/>
+			<key value="0" interpolation="2" row="671"/>
+			<key value="255" interpolation="0" row="679"/>
+			<key value="255" interpolation="2" row="680"/>
+			<key value="255" interpolation="3" row="688"/>
+			<key value="0" interpolation="2" row="696"/>
+			<key value="255" interpolation="0" row="704"/>
+			<key value="255" interpolation="2" row="705"/>
+			<key value="255" interpolation="3" row="713"/>
+			<key value="0" interpolation="2" row="721"/>
+			<key value="255" interpolation="0" row="729"/>
+			<key value="255" interpolation="2" row="730"/>
+			<key value="255" interpolation="3" row="738"/>
+			<key value="0" interpolation="2" row="746"/>
+			<key value="255" interpolation="0" row="754"/>
+			<key value="255" interpolation="2" row="755"/>
+			<key value="255" interpolation="3" row="763"/>
+			<key value="0" interpolation="0" row="767"/>
 		</track>
 	</tracks>
 	<bookmarks/>
