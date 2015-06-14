@@ -1,9 +1,17 @@
-<<<<<<< HEAD
 // ======================ME WANT MORE GLOBALS PLS======================
+import moonlander.library.*;
+
+// Minim must be imported when using Moonlander with soundtrack.
+import ddf.minim.*;
+
+Moonlander moonlander;
+
 Mbox[][] bTowers;
 float camPosX, camPosY, camPosZ;
 float camCentX, camCentY, camCentZ;
 PImage happy, sad, demon, img;
+
+float scene_1_subscene = 1;
 
 //temp
 float muuttuja = 0;
@@ -15,29 +23,11 @@ float boxdist=40;
 
 void setup () {
   size(800, 600, P3D);
-  //DEFAULT 
+  //DEFAULT
   happy = loadImage("happy.jpg");
   sad = loadImage("sad.jpg");
   demon = loadImage("demon.jpg");
   textureMode(IMAGE);
-  
-=======
-import moonlander.library.*;
-
-// Minim must be imported when using Moonlander with soundtrack.
-import ddf.minim.*;
-
-Moonlander moonlander;
-
-Mbox[][] bTowers;
-float camPosX, camPosY, camPosZ;
-float camCentX, camCentY, camCentZ;
-float scene_1_subscene = 1;
-
-void setup () {
-  size(800, 600, P3D);
-
->>>>>>> 12bc8eecb3bde850af486b15cd19f131e8fdd8cd
   Mbox[][] bTowers1 = new Mbox[8][]; // Array of box tower arrays
   for (int i = -4; i < 4; i++) {
     Mbox[] bG = makeBoxTower((float)random(90,110)*i,0,(float)random(600,700)*i);
@@ -47,19 +37,15 @@ void setup () {
   bTowers = bTowers1;
   moonlander = Moonlander.initWithSoundtrack(this, "../../music/deepspace.mp3", 127, 8);
   moonlander.start();
+
 }
 
 void draw() {
-<<<<<<< HEAD
-
-  // ======================SCENE VARIABLES======================
-
-=======
   moonlander.update();
->>>>>>> 12bc8eecb3bde850af486b15cd19f131e8fdd8cd
+
   lights();
   float time = (float)millis();
-<<<<<<< HEAD
+
 
   // ===================================================
 
@@ -90,13 +76,9 @@ void draw() {
   }
   //======================================================
 
-  
-  if (time/1000 < 4) {
-=======
   int scene_1_subscene = moonlander.getIntValue("scene_1_subscene");
 
   if (scene_1_subscene == 1) {
->>>>>>> 12bc8eecb3bde850af486b15cd19f131e8fdd8cd
     beginCamera();
     camera(0, -100, 2000, 0, -500, -2000, 0, 1, 0);
     camPosX = 0; camPosY = -100; camPosZ = 2000; camCentX = 0; camCentY = -500; camCentZ = -2000;
@@ -212,13 +194,9 @@ class Mbox { // Class of a box
   float ypos;
   float zpos;
   float rot = 0; // Rotation
-<<<<<<< HEAD
-  
-  Mbox(float posX, float posY, float posZ) {
-=======
 
-  Mbox(float posX, float posY, float posZ, float sz) {
->>>>>>> 12bc8eecb3bde850af486b15cd19f131e8fdd8cd
+  Mbox(float posX, float posY, float posZ) {
+
     xpos = posX;
     ypos = posY;
     zpos = posZ;
@@ -289,7 +267,7 @@ void TexturedCube() {
   // of the screen, but is not otherwised aligned with the X/Z faces. (This
   // just affects what type of symmetry is required if you need seamless
   // tiling all the way around the cube)
-  
+
   // +Z "front" face
   vertex(-boxsize/2, -boxsize/2,  boxsize/2, 0, 0);
   vertex( boxsize/2, -boxsize/2,  boxsize/2, boxsize/2, 0);
