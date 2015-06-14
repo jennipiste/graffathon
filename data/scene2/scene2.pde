@@ -1,9 +1,9 @@
-// import moonlander.library.*;
+import moonlander.library.*;
 
-// // Minim must be imported when using Moonlander with soundtrack.
-// import ddf.minim.*;
+// Minim must be imported when using Moonlander with soundtrack.
+import ddf.minim.*;
 
-// Moonlander moonlander;
+Moonlander moonlander;
 
 // Stars parameters
 int depth = 10;
@@ -21,12 +21,13 @@ float camCentX = 0;
 float camCentY = 0;
 float camCentZ = 0;
 float rotation = 0;
+int scene_2_subscene = 1;
 
 void setup()
 {
     size(800,600,P3D);
     stroke(255);
-    // moonlander.start();
+
 
     colorMode(RGB,255);
     loop();
@@ -38,81 +39,91 @@ void setup()
         tabStars[nb] = new Stars(-random(depth*255),random(-6*height,6*height)
         ,random(-6*width,6*width),random(1,maxStarsSpeed));
     }
+    moonlander = Moonlander.initWithSoundtrack(this, "../music/deepspace.mp3", 127, 8);
+    moonlander.start();
 
 }
 
 void draw()
 {
-    // moonlander.update();
-    // int scene = moonlander.getIntValue("scene");
-
+    moonlander.update();
     background(0);
     //background stars
     for(int nb=0; nb<nbStarsMax; nb++) {
         tabStars[nb].aff();
-        if (millis() > 4000) {
+        if (scene_2_subscene == 2) {
             tabStars[nb].anim();
         }
     }
 
-    fill(0);
+    scene_2_subscene = moonlander.getIntValue("scene_2_subscene");
+
+    // fill(0);
+    noFill();
     float time = (float)millis()/1000;
     camera(camPosX, camPosY, camPosZ, camCentX, camCentY, camCentZ, 0, 1, 0);
-    if (millis() > 4000) {
-        rotation = time*PI/20;
+    if (scene_2_subscene == 2) {
+        rotation = time*PI/2;
         moveCamera(800.0, 0.0, 0.0, 0.0, -1000.0, 0.0, 0, 1, 0, 50.0);
     }
     pushMatrix();
-    if (millis() > 4000) {
+    if (scene_2_subscene >= 2) {
         rotateZ(time);
     }
     sphere(700);
     popMatrix();
 
     pushMatrix();
-    if (millis() > 10000) {
+    if (scene_2_subscene == 3) {
         if (rotation > 3*PI/4) {
             rotation = 3*PI/4;
             moveCamera(800.0, -800.0, 0.0, 0.0, -1000.0, 0.0, 0, 1, 0, 50.0);
         }
         rotateZ(rotation);
     }
-    if (millis() > 18000) {
+    if (scene_2_subscene == 4) {
         pushMatrix();
             translate(0, 0, 100);
             rotateX(5*sin(time*0.5));
-            rotate(time);
+            // rotate(time);
             DiamondStar n2 = new DiamondStar(-810, 0, 0);
         popMatrix();
+        rotateX(5*sin(time*0.5));
+    } else if (scene_2_subscene == 5) {
         pushMatrix();
             translate(0, 0, -100);
-            rotate(time);
+            // rotate(time);
             rotateX(5*sin(time*0.5));
             DiamondStar n3 = new DiamondStar(-810, 0, 0);
-        popMatrix();pushMatrix();
+        popMatrix();
+    } else if (scene_2_subscene == 6) {
+        pushMatrix();
             translate(0, -100, 100);
             rotateX(5*sin(time*0.5));
-            rotate(time);
+            // rotate(time);
             DiamondStar n4 = new DiamondStar(-810, 0, 0);
         popMatrix();
+    } else if (scene_2_subscene == 7) {
         pushMatrix();
             translate(0, -100, -100);
-            rotate(time);
+            // rotate(time);
             rotateX(5*sin(time*0.5));
             DiamondStar n5 = new DiamondStar(-810, 0, 0);
-        popMatrix();pushMatrix();
+        popMatrix();
+    } else if (scene_2_subscene == 8) {
+        pushMatrix();
             translate(0, 0, 200);
             rotateX(5*sin(time*0.5));
-            rotate(time);
+            // rotate(time);
             DiamondStar n6 = new DiamondStar(-810, 0, 0);
         popMatrix();
+    } else if (scene_2_subscene == 9) {
         pushMatrix();
             translate(0, 100, -200);
-            rotate(time);
+            // rotate(time);
             rotateX(5*sin(time*0.5));
             DiamondStar n7 = new DiamondStar(-810, 0, 0);
         popMatrix();
-        rotateX(5*sin(time*0.5));
     }
     DiamondStar n = new DiamondStar(-810,0,0);
     popMatrix();
