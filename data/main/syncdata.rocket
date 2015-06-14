@@ -1,0 +1,60 @@
+<sync rows="256">
+	<tracks>
+		<track name="scene">
+			<key row="0" interpolation="0" value="1"/>
+			<key row="248" interpolation="0" value="3"/>
+		</track>
+		<track name="scene_1_subscene">
+			<key row="0" interpolation="0" value="1"/>
+			<key row="48" interpolation="0" value="2"/>
+			<key row="56" interpolation="0" value="3"/>
+			<key row="64" interpolation="0" value="4"/>
+			<key row="112" interpolation="0" value="5"/>
+			<key row="120" interpolation="0" value="6"/>
+			<key row="128" interpolation="0" value="7"/>
+			<key row="160" interpolation="0" value="5"/>
+			<key row="176" interpolation="0" value="6"/>
+		</track>
+		<track name="face">
+			<key row="0" interpolation="0" value="1"/>
+			<key row="48" interpolation="0" value="2"/>
+			<key row="64" interpolation="0" value="1"/>
+			<key row="112" interpolation="0" value="3"/>
+			<key row="113" interpolation="0" value="2"/>
+			<key row="120" interpolation="0" value="3"/>
+			<key row="121" interpolation="0" value="1"/>
+			<key row="128" interpolation="0" value="3"/>
+			<key row="129" interpolation="0" value="1"/>
+			<key row="160" interpolation="0" value="2"/>
+			<key row="176" interpolation="0" value="1"/>
+		</track>
+		<track name="bg_clr_r">
+			<key row="0" interpolation="0" value="255"/>
+			<key row="112" interpolation="0" value="255"/>
+			<key row="113" interpolation="0" value="255"/>
+			<key row="120" interpolation="0" value="255"/>
+			<key row="121" interpolation="0" value="255"/>
+			<key row="128" interpolation="0" value="255"/>
+			<key row="129" interpolation="0" value="255"/>
+		</track>
+		<track name="bg_clr_g">
+			<key row="0" interpolation="0" value="255"/>
+			<key row="112" interpolation="0" value="0"/>
+			<key row="113" interpolation="0" value="255"/>
+			<key row="120" interpolation="0" value="0"/>
+			<key row="121" interpolation="0" value="255"/>
+			<key row="128" interpolation="0" value="0"/>
+			<key row="129" interpolation="0" value="255"/>
+		</track>
+		<track name="bg_clr_b">
+			<key row="0" interpolation="0" value="255"/>
+			<key row="112" interpolation="0" value="0"/>
+			<key row="113" interpolation="0" value="255"/>
+			<key row="120" interpolation="0" value="0"/>
+			<key row="121" interpolation="0" value="255"/>
+			<key row="128" interpolation="0" value="0"/>
+			<key row="129" interpolation="0" value="255"/>
+		</track>
+	</tracks>
+	<bookmarks/>
+</sync>

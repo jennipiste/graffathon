@@ -11,9 +11,9 @@ import ddf.minim.*;
 Moonlander moonlander;
 
 // Camera start values float
-float camPosX = 400; 
-float camPosY = 400; 
-float camPosZ = 400;
+float camPosX = 0; 
+float camPosY = 0; 
+float camPosZ = 0;
 float camCentX = 0; 
 float camCentY = 0; 
 float camCentZ = 0;
@@ -22,12 +22,18 @@ float camCentZ = 0;
 int scene = 1;
 int scene_1_subscene = 1;
 int face = 1; //1 happy 2 sad 3 demon
+int bg_clr_r = 0;
+int bg_clr_g = 0;
+int bg_clr_b = 0;
+// int diamClr = 0;
+
+
+
 
 //SCENE1
 Mbox[][] bTowers;
 PImage happy, sad, demon, img;
 float muuttuja = 0;
-
 float boxsize=100;
 float boxdist=40;
 
@@ -71,7 +77,7 @@ void setup()
     //SCENE5 SETUP
 
     //MOONLANDER SETUP
-    moonlander = Moonlander.initWithSoundtrack(this, "track.mp3", 127, 8);
+    moonlander = Moonlander.initWithSoundtrack(this, "track.mp3", 120, 8);
     moonlander.start();
 }
 
@@ -82,15 +88,20 @@ void draw()
     scene = moonlander.getIntValue("scene");
     scene_1_subscene = moonlander.getIntValue("scene_1_subscene");
     face = moonlander.getIntValue("face");
+
+    // RGB values for background
+    bg_clr_r = moonlander.getIntValue("bg_clr_r");
+    bg_clr_g = moonlander.getIntValue("bg_clr_g");
+    bg_clr_b = moonlander.getIntValue("bg_clr_b");
      // ====================== ====== =============================
 
-    
 
     // Every loop
     lights();
-    background(0);
+    background(bg_clr_r, bg_clr_g, bg_clr_b);
 
-    println("(",camPosX,",",camPosY,",",camPosZ,")");
+    // TEST PR
+    //println("(",camPosX,",",camPosY,",",camPosZ,")");
 
     fill(105);
 
@@ -120,8 +131,8 @@ void draw()
 
 void scene1()
 {
-    //================RUNNER FOR FACES=======================
 
+    //================RUNNER FOR FACES=======================
     if (face == 1)
     {
         img = happy;
@@ -147,55 +158,55 @@ void scene1()
     if (scene_1_subscene == 9) 
     {
         beginCamera();
-        moveCamera(500, 0, -1500, 0, -200, 3000, 0, 1, 0, 100);
+        moveCamera(500, 0, -1500, 0, -200, 3000, 0, 1, 0, 10);
         endCamera();
     }
     else if (scene_1_subscene == 8) 
     {
         beginCamera();
-        moveCamera(500, 0, -1500, 0, -200, -3000, 0, 1, 0, 100);
+        moveCamera(500, 0, -1500, 0, -200, -3000, 0, 1, 0, 10);
         endCamera();
     }
 
     else if (scene_1_subscene == 7) 
     {
         beginCamera();
-        moveCamera(-500, 0, -1000, 0, -300, -2000, 0, 1, 0, 100);
+        moveCamera(-500, 0, -1000, 0, -300, -2000, 0, 1, 0, 10);
         endCamera();
     }
 
     else if (scene_1_subscene == 6) 
     {
         beginCamera();
-        moveCamera(500, 0, -500, 200, -500, -2000, 0, 1, 0, 100);
+        moveCamera(500, 0, -500, 200, -500, -2000, 0, 1, 0, 10);
         endCamera();
     }
 
     else if (scene_1_subscene == 5) 
     {
         beginCamera();
-        moveCamera(-500, 0, 200, -200, -500, -2000, 0, 1, 0, 100);
+        moveCamera(-500, 0, 200, -200, -500, -2000, 0, 1, 0, 10);
         endCamera();
     }
 
     else if (scene_1_subscene == 4) 
     {
         beginCamera();
-        moveCamera(500, 0, 800, 0, 0, -2000, 0, 1, 0, 100);
+        moveCamera(500, 0, 800, 0, 0, -2000, 0, 1, 0, 10);
         endCamera();
     }
 
     else if (scene_1_subscene == 3) 
     {
         beginCamera();
-        moveCamera(0, 0, 1200, 0, -500, -2000, 0, 1, 0, 100);
+        moveCamera(0, 0, 1200, 0, -500, -2000, 0, 1, 0, 10);
         endCamera();
     }
 
     else if (scene_1_subscene == 2) 
     {
         beginCamera();
-        moveCamera(0, 0, 1500, 0, -500, -2000, 0, 1, 0, 100);
+        moveCamera(0, 0, 1500, 0, -500, -2000, 0, 1, 0, 10);
         endCamera();
     }
 
@@ -527,7 +538,6 @@ class Mbox { // Class of a box
   void displayInMatrix() { // Moves the box in current matrix
     translate(xpos, ypos, zpos);
     rotate(rot);
-    println("Im here :D img is:",img);
     TexturedCube();
   }
 }
