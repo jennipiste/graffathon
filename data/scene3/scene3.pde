@@ -1,17 +1,26 @@
+import moonlander.library.*;
 
+// Minim must be imported when using Moonlander with soundtrack.
+import ddf.minim.*;
+
+Moonlander moonlander;
 
 //=====================GLOBALS COS ITS FUN========================================
 
 // Camera start values float
-float camPosX = 400; 
-float camPosY = 400; 
+float camPosX = 400;
+float camPosY = 400;
 float camPosZ = 400;
-float camCentX = 0; 
-float camCentY = 0; 
+float camCentX = 0;
+float camCentY = 0;
 float camCentZ = 0;
 
 // FLAGS(fags)
-int scene = 4;
+int scene_3_subscene = 1;
+
+// Diamond distances
+float diamond_dist;
+float d_dist = 50;
 
 //======================END OF GLOBALS COS ITS FUN================================
 void setup()
@@ -19,10 +28,13 @@ void setup()
     size(800, 600, P3D);
     //noStroke();
     // noFill();
+    moonlander = Moonlander.initWithSoundtrack(this, "../music/deepspace.mp3", 127, 8);
+    moonlander.start();
 }
 
 void draw()
 {
+    moonlander.update();
     // Every loop
     lights();
     background(0);
@@ -31,25 +43,35 @@ void draw()
 
     fill(105);
 
-    if(scene==1)
+    scene_3_subscene = moonlander.getIntValue("scene_3_subscene");
+
+
+    if(scene_3_subscene==1)
     {
-        scene1();
+        scene_3_subscene1();
     }
-    else if(scene==2)
+    else if(scene_3_subscene==2)
     {
-        scene2();
+        diamond_dist = d_dist*abs(sin((float)millis()/1000*PI));
     }
-    else if(scene==3)
+    else if(scene_3_subscene==3)
     {
-        scene3();
+        scene_3_subscene3();
     }
-    else if (scene==4)
+    else if (scene_3_subscene==4)
     {
-        scene4();
+        scene_3_subscene4();
+    }
+    else if (scene_3_subscene==5)
+    {
+        scene_3_subscene5();
+    }
+    else if (scene_3_subscene==6) {
+        scene_3_subscene6();
     }
 }
 
-void scene1()
+void scene_3_subscene1()
 {
 
     float time = (float)millis()/1000;
@@ -62,33 +84,33 @@ void scene1()
     moveCamera(100.0, -400.0, 100.0, 0.0, 0.0, 0.0, 0, 1, 0, 50.0);
 }
 
-void scene2()
+void scene_3_subscene3()
 {
     // Cam position
     camPosX = 0;
     camPosY = 500;
     camPosZ = 0;
-    
+
     //Needed for every scene!
     beginCamera();
     camera(camPosX, camPosY, camPosZ, camCentX, camCentY, camCentZ, 0, 1, 0);
     endCamera();
     moveCamera(0, 0, 0, 0.0, 0.0, 0.0, 1, 0, 0, 5.0);
-    
+
     pushMatrix();
     rotateY(millis()*PI/2000);
     DiamondStar n = new DiamondStar(0,0,0);
     popMatrix();
 }
 
-void scene3()
+void scene_3_subscene4()
 {
     // Cam position
     camPosX = 0;
     camPosY = 0;
     camPosZ = 0;
-    camCentX = 0; 
-    camCentY = 0; 
+    camCentX = 0;
+    camCentY = 0;
     camCentZ = 0;
 
     //Needed for every scene!
@@ -98,23 +120,28 @@ void scene3()
     moveCamera(100.0, 400.0, 100.0, 0.0, 0.0, 0.0, 0, 1, 0, 5.0);
 }
 
-void scene4()
+void scene_3_subscene5()
 {
     // Cam position
     camPosX = 400;
     camPosY = 400;
     camPosZ = 400;
-    
+
     //Needed for every scene!
     beginCamera();
     camera(camPosX, camPosY, camPosZ, camCentX, camCentY, camCentZ, 0, 1, 0);
     endCamera();
- 
+
     DiamondStar n = new DiamondStar(0,200,0);
     rotateX(2*PI/3);
     DiamondStar n2 = new DiamondStar(0,200,0);
     rotateX(2*PI/3);
     DiamondStar n3 = new DiamondStar(0,200,0);
+}
+
+void scene_3_subscene6() {
+    d_dist = 1000;
+    diamond_dist = d_dist*abs(sin((float)millis()/1000*PI));
 }
 
 class DiamondStar
@@ -148,27 +175,27 @@ class DiamondStar
         // Diamond 1
         pushMatrix();
         rotateY((float)millis()/100);
-        Diamond d1 = new Diamond(0,100,0);
+        Diamond d1 = new Diamond(0,(100+diamond_dist),0);
         popMatrix();
 
         // Diamond 2
         pushMatrix();
         rotateY(-(float)millis()/100);
-        Diamond d2 = new Diamond(0,-100,0);
+        Diamond d2 = new Diamond(0,-(100+diamond_dist),0);
         popMatrix();
-        
+
         rotateZ(PI/2);
 
-        // Diamond 3  
+        // Diamond 3
         pushMatrix();
         rotateY((float)millis()/100);
-        Diamond d3 = new Diamond(0,100,0);
+        Diamond d3 = new Diamond(0,(100+diamond_dist),0);
         popMatrix();
-        
+
         // Diamond 4
         pushMatrix();
         rotateY((float)millis()/100);
-        Diamond d4 = new Diamond(0,-100,0);
+        Diamond d4 = new Diamond(0,-(100+diamond_dist),0);
         popMatrix();
 
         rotateX(PI/2);
@@ -176,19 +203,19 @@ class DiamondStar
         // Diamond 5
         pushMatrix();
         rotateY((float)millis()/100);
-        Diamond d5 = new Diamond(0,100,0);
+        Diamond d5 = new Diamond(0,(100+diamond_dist),0);
         popMatrix();
 
         // Diamond 6
         pushMatrix();
-        rotateY((float)millis()/100); 
-        Diamond d6 = new Diamond(0,-100,0);
+        rotateY((float)millis()/100);
+        Diamond d6 = new Diamond(0,-(100+diamond_dist),0);
         popMatrix();
         popMatrix();
     }
 }
 
-class Diamond 
+class Diamond
 {
     float x, y, z;
     float size = 1;
@@ -213,20 +240,20 @@ class Diamond
     }
 
     Diamond(float xcoord, float ycoord, float zcoord, int disableFill)
-    {   
+    {
         x = xcoord;
         y = ycoord;
         z = zcoord;
-        
+
         if(disableFill == 1)
         {
             noFill();
         }
         make_shape(size);
     }
-    
+
     Diamond(float xcoord, float ycoord, float zcoord,int disableFill, float size)
-    {   
+    {
         x = xcoord;
         y = ycoord;
         z = zcoord;
@@ -298,7 +325,7 @@ class Diamond
         popMatrix();
     }
 }
-// Move camera smoothly    
+// Move camera smoothly
 void moveCamera (float posX, float posY, float posZ, float centerX, float centerY, float centerZ, float upX, float upY, float upZ, float damping) { // Move smoothly to a pos
     // Position
     float dif = camPosY - posY;
@@ -328,4 +355,3 @@ void moveCamera (float posX, float posY, float posZ, float centerX, float center
     }
     camera(camPosX, camPosY, camPosZ, camCentX, camCentY, camCentZ, upX, upY, upZ);
 }
-  
