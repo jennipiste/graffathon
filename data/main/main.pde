@@ -171,6 +171,7 @@ void draw()
     {
         scene5();
     }
+    else if (scene==10) scene10();
 }
 
 void scene0()
@@ -495,6 +496,13 @@ void scene6()
     DiamondStar n2 = new DiamondStar(0,200,0);
     rotateX(2*PI/3);
     DiamondStar n3 = new DiamondStar(0,200,0);
+}
+
+//Ending scene
+void scene10()
+{
+    rain();
+    ending();
 }
 
 // ====================================================================================================================================================
@@ -952,6 +960,17 @@ void rotatingLabel()
     translate(width/2, height/2); // put 0,0,0 at the center of the screen
     textSize(32);
     text("Crabhics presents\nSpooky", 40, 40, 40);
+    popMatrix();
+}
+
+void ending()
+{
+    pushMatrix();
+    noStroke();
+    fill (255,255,255,intro_opa);
+    translate(width/2, height/2); // put 0,0,0 at the center of the screen
+    textSize(32);
+    text("<-----Spooky------>\nMade by\n\nmarski\nbensku\nmeriloh1\n", 40, 40, 40);
     popMatrix();
 }
 // ====================================================================================================================================================
