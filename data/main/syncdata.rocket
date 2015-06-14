@@ -1,59 +1,71 @@
 <sync rows="256">
 	<tracks>
 		<track name="scene">
-			<key row="0" interpolation="0" value="1"/>
-			<key row="248" interpolation="0" value="3"/>
+			<key interpolation="0" row="0" value="1"/>
+			<key interpolation="0" row="248" value="3"/>
 		</track>
 		<track name="scene_1_subscene">
-			<key row="0" interpolation="0" value="1"/>
-			<key row="48" interpolation="0" value="2"/>
-			<key row="56" interpolation="0" value="3"/>
-			<key row="64" interpolation="0" value="4"/>
-			<key row="112" interpolation="0" value="5"/>
-			<key row="120" interpolation="0" value="6"/>
-			<key row="128" interpolation="0" value="7"/>
-			<key row="160" interpolation="0" value="5"/>
-			<key row="176" interpolation="0" value="6"/>
+			<key interpolation="0" row="0" value="1"/>
+			<key interpolation="0" row="16" value="2"/>
+			<key interpolation="0" row="56" value="3"/>
+			<key interpolation="0" row="64" value="4"/>
+			<key interpolation="0" row="112" value="5"/>
+			<key interpolation="0" row="120" value="6"/>
+			<key interpolation="0" row="128" value="7"/>
+			<key interpolation="0" row="160" value="5"/>
+			<key interpolation="0" row="176" value="6"/>
+			<key interpolation="0" row="192" value="7"/>
+			<key interpolation="0" row="224" value="8"/>
+			<key interpolation="0" row="240" value="9"/>
 		</track>
 		<track name="face">
-			<key row="0" interpolation="0" value="1"/>
-			<key row="48" interpolation="0" value="2"/>
-			<key row="64" interpolation="0" value="1"/>
-			<key row="112" interpolation="0" value="3"/>
-			<key row="113" interpolation="0" value="2"/>
-			<key row="120" interpolation="0" value="3"/>
-			<key row="121" interpolation="0" value="1"/>
-			<key row="128" interpolation="0" value="3"/>
-			<key row="129" interpolation="0" value="1"/>
-			<key row="160" interpolation="0" value="2"/>
-			<key row="176" interpolation="0" value="1"/>
+			<key interpolation="0" row="0" value="1"/>
+			<key interpolation="0" row="48" value="2"/>
+			<key interpolation="0" row="64" value="1"/>
+			<key interpolation="0" row="112" value="3"/>
+			<key interpolation="0" row="113" value="2"/>
+			<key interpolation="0" row="120" value="3"/>
+			<key interpolation="0" row="121" value="1"/>
+			<key interpolation="0" row="128" value="3"/>
+			<key interpolation="0" row="129" value="1"/>
+			<key interpolation="0" row="160" value="2"/>
+			<key interpolation="0" row="176" value="1"/>
 		</track>
 		<track name="bg_clr_r">
-			<key row="0" interpolation="0" value="255"/>
-			<key row="112" interpolation="0" value="255"/>
-			<key row="113" interpolation="0" value="255"/>
-			<key row="120" interpolation="0" value="255"/>
-			<key row="121" interpolation="0" value="255"/>
-			<key row="128" interpolation="0" value="255"/>
-			<key row="129" interpolation="0" value="255"/>
+			<key interpolation="0" row="0" value="255"/>
+			<key interpolation="0" row="112" value="255"/>
+			<key interpolation="0" row="113" value="255"/>
+			<key interpolation="0" row="120" value="255"/>
+			<key interpolation="0" row="121" value="255"/>
+			<key interpolation="0" row="128" value="255"/>
+			<key interpolation="0" row="129" value="255"/>
 		</track>
 		<track name="bg_clr_g">
-			<key row="0" interpolation="0" value="255"/>
-			<key row="112" interpolation="0" value="0"/>
-			<key row="113" interpolation="0" value="255"/>
-			<key row="120" interpolation="0" value="0"/>
-			<key row="121" interpolation="0" value="255"/>
-			<key row="128" interpolation="0" value="0"/>
-			<key row="129" interpolation="0" value="255"/>
+			<key interpolation="0" row="0" value="255"/>
+			<key interpolation="0" row="112" value="0"/>
+			<key interpolation="0" row="113" value="255"/>
+			<key interpolation="0" row="120" value="0"/>
+			<key interpolation="0" row="121" value="255"/>
+			<key interpolation="0" row="128" value="0"/>
+			<key interpolation="0" row="129" value="255"/>
 		</track>
 		<track name="bg_clr_b">
-			<key row="0" interpolation="0" value="255"/>
-			<key row="112" interpolation="0" value="0"/>
-			<key row="113" interpolation="0" value="255"/>
-			<key row="120" interpolation="0" value="0"/>
-			<key row="121" interpolation="0" value="255"/>
-			<key row="128" interpolation="0" value="0"/>
-			<key row="129" interpolation="0" value="255"/>
+			<key interpolation="0" row="0" value="255"/>
+			<key interpolation="0" row="112" value="0"/>
+			<key interpolation="0" row="113" value="255"/>
+			<key interpolation="0" row="120" value="0"/>
+			<key interpolation="0" row="121" value="255"/>
+			<key interpolation="0" row="128" value="0"/>
+			<key interpolation="0" row="129" value="255"/>
+		</track>
+		<track name="pyoritin">
+			<key interpolation="0" row="0" value="2"/>
+			<key interpolation="0" row="48" value="15"/>
+			<key interpolation="0" row="64" value="2"/>
+			<key interpolation="0" row="112" value="15"/>
+			<key interpolation="0" row="128" value="2"/>
+			<key interpolation="0" row="176" value="15"/>
+			<key interpolation="0" row="192" value="2"/>
 		</track>
 	</tracks>
 	<bookmarks/>
