@@ -29,8 +29,7 @@ int scene_2_subscene = 1;
 int pyoritin = 2;
 // int diamClr = 0;
 
-float time = (float)millis()/1000;
-
+float time;
 
 //SCENE1
 Mbox[][] bTowers;
@@ -130,10 +129,10 @@ void draw()
 
      // ====================== ====== =============================
 
-
     // Every loop
     lights();
     background(bg_clr_r, bg_clr_g, bg_clr_b);
+    time = (float)millis()/1000;
 
     // TEST PR
     //println("(",camPosX,",",camPosY,",",camPosZ,")");
@@ -270,28 +269,37 @@ void scene1()
 
 void scene2()
 {
-    pushMatrix();
+    background(0);
+    //background stars
+    for(int nb=0; nb<nbStarsMax; nb++) {
+        tabStars[nb].aff();
+        if (scene_2_subscene == 2) {
+            tabStars[nb].anim();
+        }
+    }
+    float scene2_time = 0;
     if (scene_2_subscene == 1) {
-        camPosX = 2500;
+        camPosX = 1500;
         camPosY = 0;
         camPosZ = 0;
         camCentX = 0;
         camCentY = 0;
         camCentZ = 0;
+        scene2_time = (float)millis()/1000;
     }
     noStroke();
     lights();
-    fill(red, 0, 0, 150);
+    pointLight(255, 0, 0, 800.0, 0.0, 0.0);
+    fill(red, 0, 0);
     camera(camPosX, camPosY, camPosZ, camCentX, camCentY, camCentZ, 0, 1, 0);
     if (scene_2_subscene == 2) {
-        rotation = time*PI/2;
+        // rotation = rotation + PI;
         moveCamera(800.0, 0.0, 0.0, 0.0, -1000.0, 0.0, 0, 1, 0, 50.0);
     }
     pushMatrix();
     if (scene_2_subscene >= 2) {
-        println("ROTATE!!");
-        rotateZ(time);
-        red = int(255*abs(sin((float)millis()/2000)));
+        rotate(time);
+        red = int(255*abs(sin((float)millis()/1000)));
     }
     textureSphere(700, 700, 700, ball_image);
     // sphere(700);
@@ -299,60 +307,107 @@ void scene2()
 
     println("SUBSCENE: " + scene_2_subscene);
     println("ROTATION: "+ rotation);
+    println("scene2_time: "+scene2_time);
     pushMatrix();
-    if (scene_2_subscene == 3) {
-        if (rotation > 3*PI/4) {
-            rotation = 3*PI/4;
-            moveCamera(800.0, -800.0, 0.0, 0.0, -1000.0, 0.0, 0, 1, 0, 50.0);
+    if (scene_2_subscene >= 3) {
+
+        moveCamera(800.0, -800.0, 0.0, 0.0, -1000.0, 0.0, 0, 1, 0, 20.0);
+        // rotateX(5*sin(time*0.5));
+        if (scene_2_subscene >= 13) {
+            rotate(time);
+            rotateY(time);
         }
-        rotateZ(rotation);
+        DiamondStar n = new DiamondStar(200,-1000,0);
     }
-    if (scene_2_subscene == 4) {
+    if (scene_2_subscene >= 4) {
         pushMatrix();
             translate(0, 0, 100);
             rotateX(5*sin(time*0.5));
-            // rotate(time);
-            DiamondStar n2 = new DiamondStar(-810, 0, 0);
+            DiamondStar n2 = new DiamondStar(400, -1000, 0);
         popMatrix();
-        rotateX(5*sin(time*0.5));
-    } else if (scene_2_subscene == 5) {
+        //rotateX(5*sin(time*0.5));
+    }
+    if (scene_2_subscene >= 5) {
         pushMatrix();
-            translate(0, 0, -100);
-            // rotate(time);
+            translate(10, 0, -300);
+            if (scene_2_subscene >= 13) {
+                rotate(time);
+                rotateY(time);
+            }
             rotateX(5*sin(time*0.5));
-            DiamondStar n3 = new DiamondStar(-810, 0, 0);
-        popMatrix();
-    } else if (scene_2_subscene == 6) {
-        pushMatrix();
-            translate(0, -100, 100);
-            rotateX(5*sin(time*0.5));
-            // rotate(time);
-            DiamondStar n4 = new DiamondStar(-810, 0, 0);
-        popMatrix();
-    } else if (scene_2_subscene == 7) {
-        pushMatrix();
-            translate(0, -100, -100);
-            // rotate(time);
-            rotateX(5*sin(time*0.5));
-            DiamondStar n5 = new DiamondStar(-810, 0, 0);
-        popMatrix();
-    } else if (scene_2_subscene == 8) {
-        pushMatrix();
-            translate(0, 0, 200);
-            rotateX(5*sin(time*0.5));
-            // rotate(time);
-            DiamondStar n6 = new DiamondStar(-810, 0, 0);
-        popMatrix();
-    } else if (scene_2_subscene == 9) {
-        pushMatrix();
-            translate(0, 100, -200);
-            // rotate(time);
-            rotateX(5*sin(time*0.5));
-            DiamondStar n7 = new DiamondStar(-810, 0, 0);
+            DiamondStar n3 = new DiamondStar(200, -1000, 0);
         popMatrix();
     }
-    DiamondStar n = new DiamondStar(-810,0,0);
-    popMatrix();
+    if (scene_2_subscene >= 6) {
+        pushMatrix();
+            translate(20, -100, 100);
+            if (scene_2_subscene >= 13) {
+                rotate(time);
+                rotateZ(time);
+            }
+        DiamondStar n4 = new DiamondStar(-900, -1000, 0);
+        popMatrix();
+    }
+    if (scene_2_subscene >= 7) {
+        pushMatrix();
+            translate(80, -50, -100);
+            if (scene_2_subscene >= 13) {
+                rotate(time);
+                rotateX(time);
+            }
+            DiamondStar n5 = new DiamondStar(-900, -1000, 0);
+        popMatrix();
+    }
+    if (scene_2_subscene >= 8) {
+        pushMatrix();
+            translate(0, 300, 200);
+            if (scene_2_subscene >= 13) {
+                rotate(time);
+                rotateY(time);
+            }
+            DiamondStar n6 = new DiamondStar(-900, -1000, 0);
+        popMatrix();
+    }
+    if (scene_2_subscene >= 9) {
+        pushMatrix();
+            translate(200, 100, -200);
+            if (scene_2_subscene >= 13) {
+                rotate(time);
+                rotateZ(time);
+            }
+            DiamondStar n7 = new DiamondStar(-900, -1000, 0);
+        popMatrix();
+    }
+    if (scene_2_subscene >= 10) {
+        pushMatrix();
+            translate(0, 100, -400);
+            if (scene_2_subscene >= 13) {
+                rotate(time);
+                rotateZ(time);
+            }
+            DiamondStar n7 = new DiamondStar(-900, -1000, 0);
+        popMatrix();
+    }
+    if (scene_2_subscene >= 11) {
+        pushMatrix();
+            translate(0, -400, 400);
+            if (scene_2_subscene >= 13) {
+                rotate(time);
+                rotateZ(time);
+            }
+            DiamondStar n7 = new DiamondStar(-900, -1000, 0);
+        popMatrix();
+    }
+    if (scene_2_subscene >= 12) {
+        pushMatrix();
+            translate(200, 50, -200);
+            if (scene_2_subscene >= 13) {
+                rotate(time);
+                rotateZ(time);
+            }
+            DiamondStar n7 = new DiamondStar(-900, -1000, 0);
+        popMatrix();
+    }
     popMatrix();
 }
 
@@ -518,7 +573,7 @@ class Stars {
 class DiamondStar
 {
     float x,y,z;
-    float size = 1;
+    float size = 0.5;
 
     DiamondStar(int xcoord, int ycoord, int zcoord )
     {
@@ -546,13 +601,13 @@ class DiamondStar
         // Diamond 1
         pushMatrix();
         rotateY((float)millis()/100);
-        Diamond d1 = new Diamond(0,100,0);
+        Diamond d1 = new Diamond(0,100*size,0, size);
         popMatrix();
 
         // Diamond 2
         pushMatrix();
         rotateY(-(float)millis()/100);
-        Diamond d2 = new Diamond(0,-100,0);
+        Diamond d2 = new Diamond(0,-100*size,0, size);
         popMatrix();
 
         rotateZ(PI/2);
@@ -560,13 +615,13 @@ class DiamondStar
         // Diamond 3
         pushMatrix();
         rotateY((float)millis()/100);
-        Diamond d3 = new Diamond(0,100,0);
+        Diamond d3 = new Diamond(0,100*size,0, size);
         popMatrix();
 
         // Diamond 4
         pushMatrix();
         rotateY((float)millis()/100);
-        Diamond d4 = new Diamond(0,-100,0);
+        Diamond d4 = new Diamond(0,-100*size,0, size);
         popMatrix();
 
         rotateX(PI/2);
@@ -574,13 +629,13 @@ class DiamondStar
         // Diamond 5
         pushMatrix();
         rotateY((float)millis()/100);
-        Diamond d5 = new Diamond(0,100,0);
+        Diamond d5 = new Diamond(0,100*size,0, size);
         popMatrix();
 
         // Diamond 6
         pushMatrix();
         rotateY((float)millis()/100);
-        Diamond d6 = new Diamond(0,-100,0);
+        Diamond d6 = new Diamond(0,-100*size,0, size);
         popMatrix();
         popMatrix();
     }
@@ -592,11 +647,12 @@ class Diamond
     float size = 1;
 
     //Constructors
-    Diamond(int xcoord, int ycoord, int zcoord)
+    Diamond(float xcoord, float ycoord, float zcoord, float sizeIn)
     {
-        x = (float)xcoord;
-        y = (float)ycoord;
-        z = (float)zcoord;
+        x = xcoord;
+        y = ycoord;
+        z = zcoord;
+        size = sizeIn;
 
         make_shape(size);
     }

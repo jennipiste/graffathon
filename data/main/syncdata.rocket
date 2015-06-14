@@ -1,8 +1,8 @@
 <sync rows="1000">
 	<tracks>
 		<track name="scene">
-			<key interpolation="0" row="0" value="1"/>
-			<key interpolation="0" row="320" value="2"/>
+			<key row="0" interpolation="0" value="1"/>
+			<key row="320" interpolation="0" value="2"/>
 		</track>
 		<track name="scene_1_subscene">
 			<key row="0" interpolation="0" value="1"/>
@@ -118,10 +118,19 @@
 			<key row="304" interpolation="0" value="2"/>
 		</track>
 		<track name="scene_2_subscene">
-			<key interpolation="0" row="320" value="1"/>
-			<key interpolation="0" row="336" value="2"/>
-			<key interpolation="0" row="376" value="3"/>
-			<key interpolation="0" row="408" value="4"/>
+			<key row="320" interpolation="0" value="1"/>
+			<key row="336" interpolation="0" value="2"/>
+			<key row="416" interpolation="0" value="3"/>
+			<key row="424" interpolation="0" value="4"/>
+			<key row="432" interpolation="0" value="5"/>
+			<key row="440" interpolation="0" value="6"/>
+			<key row="456" interpolation="0" value="7"/>
+			<key row="472" interpolation="0" value="8"/>
+			<key row="504" interpolation="0" value="9"/>
+			<key row="528" interpolation="0" value="10"/>
+			<key row="536" interpolation="0" value="11"/>
+			<key row="552" interpolation="0" value="12"/>
+			<key row="576" interpolation="0" value="13"/>
 		</track>
 	</tracks>
 	<bookmarks/>

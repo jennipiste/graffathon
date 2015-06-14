@@ -26,7 +26,7 @@ int scene_2_subscene = 1;
 // SPHERE
 int ptsW, ptsH;
 
-PImage img;
+PImage ball_image;
 
 int numPointsW;
 int numPointsH_2pi;
@@ -49,7 +49,7 @@ void setup()
     loop();
     strokeWeight(taille);
 
-    img=loadImage("texture.jpg");
+    ball_image=loadImage("texture.jpg");
     ptsW=100;
     ptsH=100;
     initializeSphere(ptsW, ptsH);
@@ -80,12 +80,12 @@ void draw()
 
     scene_2_subscene = moonlander.getIntValue("scene_2_subscene");
 
-    // noFill();
-    noStroke();
+    noFill();
+    //noStroke();
     float time = (float)millis()/1000;
     camera(camPosX, camPosY, camPosZ, camCentX, camCentY, camCentZ, 0, 1, 0);
     if (scene_2_subscene == 2) {
-        rotation = time*PI/2;
+        rotation = time*PI/12;
         moveCamera(800.0, 0.0, 0.0, 0.0, -1000.0, 0.0, 0, 1, 0, 50.0);
     }
     pushMatrix();
@@ -94,11 +94,13 @@ void draw()
         red = int(255*abs(sin((float)millis()/2000)));
     }
     lights();
-    fill(red, 0, 0, 150);
-    textureSphere(700, 700, 700, img);
-    // sphere(700);
+    //fill(red, 0, 0, 150);
+    //textureSphere(700, 700, 700, ball_image);
+    sphere(700);
     popMatrix();
 
+
+    println(camPosX, camPosY, camPosZ);
     pushMatrix();
     if (scene_2_subscene == 3) {
         if (rotation > 3*PI/4) {
