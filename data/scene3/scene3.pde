@@ -53,6 +53,7 @@ void draw()
     else if(scene_3_subscene==2)
     {
         diamond_dist = d_dist*abs(sin((float)millis()/1000*PI));
+        scene_3_subscene1();
     }
     else if(scene_3_subscene==3)
     {
@@ -171,6 +172,9 @@ class DiamondStar
         // Colour for diamond star def 255
         // fill(200); //uncomment
         pushMatrix();
+        noStroke();
+        directionalLight(204, 204, 204, .5, 0, -1);
+        emissive(0, 26, 51);
         translate(x,y,z);
         // Diamond 1
         pushMatrix();
