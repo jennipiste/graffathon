@@ -1,10 +1,24 @@
+// ======================ME WANT MORE GLOBALS PLS======================
 Mbox[][] bTowers;
 float camPosX, camPosY, camPosZ;
 float camCentX, camCentY, camCentZ;
+PImage happy, sad, demon, img;
+
+//temp
+float muuttuja = 0;
+
+float boxsize=100;
+float boxdist=40;
+ // ====================== GLOBALS :DD ======================
 
 
 void setup () {
   size(800, 600, P3D);
+  //DEFAULT 
+  happy = loadImage("happy.jpg");
+  sad = loadImage("sad.jpg");
+  demon = loadImage("demon.jpg");
+  textureMode(IMAGE);
   
   Mbox[][] bTowers1 = new Mbox[8][]; // Array of box tower arrays
   for (int i = -4; i < 4; i++) {
@@ -16,9 +30,41 @@ void setup () {
 }
 
 void draw() {
+
+  // ======================SCENE VARIABLES======================
+
   lights();
-  background(255);
   float time = (float)millis();
+
+  // ===================================================
+
+
+  // temp imgchanger for boxtower ======================
+  if (millis()/1000 > muuttuja+4)
+  {
+    background(255,0,0);
+    muuttuja = millis()/1000;
+    img = demon;
+  }
+  else if (millis()/1000 > muuttuja+3)
+  {
+    background(255,0,0);
+    // muuttuja = millis()/1000;
+    img = demon;
+  }
+  else if ((millis()/1000)>=(muuttuja+2))
+  {
+    background(255);
+    img = sad;
+  }
+
+  else if (millis()/1000>=muuttuja)
+  {
+    background(255);
+    img = happy;
+  }
+  //======================================================
+
   
   if (time/1000 < 4) {
     beginCamera();
@@ -90,11 +136,11 @@ void draw() {
 }
 
 Mbox[] makeBoxTower(float x, float y, float z) {
-  Mbox b1 = new Mbox(x, y, z, 45);
-  Mbox b2 = new Mbox(0, -50, 0, 45);
-  Mbox b3 = new Mbox(0, -50, 0, 45);
-  Mbox b4 = new Mbox(0, -50, 0, 45);
-  Mbox b5 = new Mbox(0, -50, 0, 45);
+  Mbox b1 = new Mbox(x, y, z);
+  Mbox b2 = new Mbox(0, -100-boxdist, 0);
+  Mbox b3 = new Mbox(0, -100-boxdist, 0);
+  Mbox b4 = new Mbox(0, -100-boxdist, 0);
+  Mbox b5 = new Mbox(0, -100-boxdist, 0);
   Mbox[] array = {b1, b2, b3, b4, b5};
   return array;
 }
@@ -135,14 +181,12 @@ class Mbox { // Class of a box
   float xpos;
   float ypos;
   float zpos;
-  float size;
   float rot = 0; // Rotation
   
-  Mbox(float posX, float posY, float posZ, float sz) {
+  Mbox(float posX, float posY, float posZ) {
     xpos = posX;
     ypos = posY;
     zpos = posZ;
-    size = sz;
   }
   
   float getPosX() {
@@ -184,12 +228,69 @@ class Mbox { // Class of a box
     pushMatrix();
     translate(xpos, ypos, zpos);
     rotate(rot);
-    box(size);
+    TexturedCube();
     popMatrix();
   }
   void displayInMatrix() { // Moves the box in current matrix
     translate(xpos, ypos, zpos);
     rotate(rot);
-    box(size);
+    println("Im here :D img is:",img);
+    TexturedCube();
   }
 }
+
+
+
+ // ======================TEXTURE BOX======================
+void TexturedCube() {
+  beginShape(QUADS);
+  texture(img);
+
+  // Given one texture and six faces, we can easily set up the uv coordinates
+  // such that four of the faces tile "perfectly" along either u or v, but the other
+  // two faces cannot be so aligned.  This code tiles "along" u, "around" the X/Z faces
+  // and fudges the Y faces - the Y faces are arbitrarily aligned such that a
+  // rotation along the X axis will put the "top" of either texture at the "top"
+  // of the screen, but is not otherwised aligned with the X/Z faces. (This
+  // just affects what type of symmetry is required if you need seamless
+  // tiling all the way around the cube)
+  
+  // +Z "front" face
+  vertex(-boxsize/2, -boxsize/2,  boxsize/2, 0, 0);
+  vertex( boxsize/2, -boxsize/2,  boxsize/2, boxsize/2, 0);
+  vertex( boxsize/2,  boxsize/2,  boxsize/2, boxsize/2, boxsize/2);
+  vertex(-boxsize/2,  boxsize/2,  boxsize/2, 0, boxsize/2);
+
+  // -Z "back" face
+  vertex( boxsize/2, -boxsize/2, -boxsize/2, 0, 0);
+  vertex(-boxsize/2, -boxsize/2, -boxsize/2, boxsize/2, 0);
+  vertex(-boxsize/2,  boxsize/2, -boxsize/2, boxsize/2, boxsize/2);
+  vertex( boxsize/2,  boxsize/2, -boxsize/2, 0, boxsize/2);
+
+  // +Y "bottom" face
+  vertex(-boxsize/2,  boxsize/2,  boxsize/2, 0, 0);
+  vertex( boxsize/2,  boxsize/2,  boxsize/2, boxsize/2, 0);
+  vertex( boxsize/2,  boxsize/2, -boxsize/2, boxsize/2, boxsize/2);
+  vertex(-boxsize/2,  boxsize/2, -boxsize/2, 0, boxsize/2);
+
+  // -Y "top" face
+  vertex(-boxsize/2, -boxsize/2, -boxsize/2, 0, 0);
+  vertex( boxsize/2, -boxsize/2, -boxsize/2, boxsize/2, 0);
+  vertex( boxsize/2, -boxsize/2,  boxsize/2, boxsize/2, boxsize/2);
+  vertex(-boxsize/2, -boxsize/2,  boxsize/2, 0, boxsize/2);
+
+  // +X "right" face
+  vertex( boxsize/2, -boxsize/2,  boxsize/2, 0, 0);
+  vertex( boxsize/2, -boxsize/2, -boxsize/2, boxsize/2, 0);
+  vertex( boxsize/2,  boxsize/2, -boxsize/2, boxsize/2, boxsize/2);
+  vertex( boxsize/2,  boxsize/2,  boxsize/2, 0, boxsize/2);
+
+  // -X "left" face
+  vertex(-boxsize/2, -boxsize/2, -boxsize/2, 0, 0);
+  vertex(-boxsize/2, -boxsize/2,  boxsize/2, boxsize/2, 0);
+  vertex(-boxsize/2,  boxsize/2,  boxsize/2, boxsize/2, boxsize/2);
+  vertex(-boxsize/2,  boxsize/2, -boxsize/2, 0, boxsize/2);
+
+  endShape();
+}
+ // ===================================================================

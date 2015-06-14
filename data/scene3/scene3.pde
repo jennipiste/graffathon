@@ -11,7 +11,7 @@ float camCentY = 0;
 float camCentZ = 0;
 
 // FLAGS(fags)
-int scene = 1;
+int scene = 4;
 
 //======================END OF GLOBALS COS ITS FUN================================
 void setup()
@@ -19,7 +19,6 @@ void setup()
     size(800, 600, P3D);
     //noStroke();
     // noFill();
-
 }
 
 void draw()
@@ -30,18 +29,23 @@ void draw()
 
     println("(",camPosX,",",camPosY,",",camPosZ,")");
 
+    fill(105);
 
-    if(millis()<7000)
+    if(scene==1)
     {
         scene1();
     }
-    else if(millis()<14000)
+    else if(scene==2)
     {
         scene2();
     }
-    else if(millis()<20000)
+    else if(scene==3)
     {
         scene3();
+    }
+    else if (scene==4)
+    {
+        scene4();
     }
 }
 
@@ -83,12 +87,34 @@ void scene3()
     camPosX = 0;
     camPosY = 0;
     camPosZ = 0;
-    
+    camCentX = 0; 
+    camCentY = 0; 
+    camCentZ = 0;
+
     //Needed for every scene!
     beginCamera();
     camera(camPosX, camPosY, camPosZ, camCentX, camCentY, camCentZ, 0, 1, 0);
     endCamera();
     moveCamera(100.0, 400.0, 100.0, 0.0, 0.0, 0.0, 0, 1, 0, 5.0);
+}
+
+void scene4()
+{
+    // Cam position
+    camPosX = 400;
+    camPosY = 400;
+    camPosZ = 400;
+    
+    //Needed for every scene!
+    beginCamera();
+    camera(camPosX, camPosY, camPosZ, camCentX, camCentY, camCentZ, 0, 1, 0);
+    endCamera();
+ 
+    DiamondStar n = new DiamondStar(0,200,0);
+    rotateX(2*PI/3);
+    DiamondStar n2 = new DiamondStar(0,200,0);
+    rotateX(2*PI/3);
+    DiamondStar n3 = new DiamondStar(0,200,0);
 }
 
 class DiamondStar
