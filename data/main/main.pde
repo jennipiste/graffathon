@@ -25,6 +25,7 @@ int face = 1; //1 happy 2 sad 3 demon
 int bg_clr_r = 0;
 int bg_clr_g = 0;
 int bg_clr_b = 0;
+int pyoritin = 2;
 // int diamClr = 0;
 
 
@@ -93,6 +94,9 @@ void draw()
     bg_clr_r = moonlander.getIntValue("bg_clr_r");
     bg_clr_g = moonlander.getIntValue("bg_clr_g");
     bg_clr_b = moonlander.getIntValue("bg_clr_b");
+    
+    pyoritin = moonlander.getIntValue("pyoritin");
+    
      // ====================== ====== =============================
 
 
@@ -150,21 +154,21 @@ void scene1()
 
     if (scene_1_subscene == 1) {
         beginCamera();
-        camera(0, -100, 2000, 0, -500, -2000, 0, 1, 0);
-        camPosX = 0; camPosY = -100; camPosZ = 2000; camCentX = 0; camCentY = -500; camCentZ = -2000;
+        camera(0, -100, 3500, 0, -500, -2000, 0, 1, 0);
+        camPosX = 0; camPosY = -100; camPosZ = 3500; camCentX = 0; camCentY = -500; camCentZ = -2000;
         endCamera();
     }
 
     if (scene_1_subscene == 9) 
     {
         beginCamera();
-        moveCamera(500, 0, -1500, 0, -200, 3000, 0, 1, 0, 10);
+        moveCamera(500, 0, -1500, 0, -200, 3000, 0, 1, 0, 100);
         endCamera();
     }
     else if (scene_1_subscene == 8) 
     {
         beginCamera();
-        moveCamera(500, 0, -1500, 0, -200, -3000, 0, 1, 0, 10);
+        moveCamera(-500, 0, 0, 0, -200, -3000, 0, 1, 0, 10);
         endCamera();
     }
 
@@ -192,21 +196,21 @@ void scene1()
     else if (scene_1_subscene == 4) 
     {
         beginCamera();
-        moveCamera(500, 0, 800, 0, 0, -2000, 0, 1, 0, 10);
+        moveCamera(600, 0, -500, 0, 0, -2000, 0, 1, 0, 100);
         endCamera();
     }
 
     else if (scene_1_subscene == 3) 
     {
         beginCamera();
-        moveCamera(0, 0, 1200, 0, -500, -2000, 0, 1, 0, 10);
+        moveCamera(0, 0, 1200, 0, -500, -2000, 0, 1, 0, 100);
         endCamera();
     }
 
     else if (scene_1_subscene == 2) 
     {
         beginCamera();
-        moveCamera(0, 0, 1500, 0, -500, -2000, 0, 1, 0, 10);
+        moveCamera(0, 0, 1500, 0, -500, -2000, 0, 1, 0, 100);
         endCamera();
     }
 
@@ -217,7 +221,7 @@ void scene1()
     pushMatrix();
     for (int j = 0; j < bTowers[i].length; j++) {
       Mbox box = bTowers[i][j];
-      box.translate_(box.getPosX()+(cos((float)millis()/1000*2*PI)), box.getPosY(), box.getPosZ()+sin((float)millis()/1000*2*PI));
+      box.translate_(box.getPosX()+(cos((float)millis()/1000*pyoritin*PI)), box.getPosY(), box.getPosZ()+sin((float)millis()/1000*pyoritin*PI));
       box.displayInMatrix();
     }
     popMatrix();
