@@ -11,7 +11,7 @@ float camPosX, camPosY, camPosZ;
 float camCentX, camCentY, camCentZ;
 PImage happy, sad, demon, img;
 
-float scene_1_subscene = 1;
+int scene_1_subscene = 1;
 
 //temp
 float muuttuja = 0;
@@ -76,7 +76,7 @@ void draw() {
   }
   //======================================================
 
-  int scene_1_subscene = moonlander.getIntValue("scene_1_subscene");
+  scene_1_subscene = moonlander.getIntValue("scene_1_subscene");
 
   if (scene_1_subscene == 1) {
     beginCamera();
