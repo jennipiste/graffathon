@@ -25,6 +25,9 @@ int face = 1; //1 happy 2 sad 3 demon
 int bg_clr_r = 0;
 int bg_clr_g = 0;
 int bg_clr_b = 0;
+// int diamClr = 0;
+
+
 
 
 //SCENE1
