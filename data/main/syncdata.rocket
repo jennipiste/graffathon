@@ -3,6 +3,7 @@
 		<track name="scene">
 			<key value="0" interpolation="0" row="0"/>
 			<key value="1" interpolation="0" row="48"/>
+			<key value="2" interpolation="0" row="320"/>
 			<key value="3" interpolation="0" row="768"/>
 			<key value="4" interpolation="0" row="792"/>
 			<key value="4" interpolation="0" row="800"/>
@@ -22,7 +23,6 @@
 			<key value="4" interpolation="0" row="1008"/>
 			<key value="3" interpolation="0" row="1024"/>
 			<key value="4" interpolation="0" row="1040"/>
-
 		</track>
 		<track name="scene_1_subscene">
 			<key value="1" interpolation="0" row="48"/>
@@ -100,6 +100,28 @@
 			<key value="255" interpolation="0" row="976"/>
 			<key value="0" interpolation="0" row="977"/>
 			<key value="0" interpolation="0" row="978"/>
+			<key value="255" interpolation="0" row="984"/>
+			<key value="123" interpolation="0" row="985"/>
+			<key value="32" interpolation="0" row="986"/>
+			<key value="255" interpolation="0" row="987"/>
+			<key value="1" interpolation="0" row="988"/>
+			<key value="2" interpolation="0" row="989"/>
+			<key value="255" interpolation="0" row="990"/>
+			<key value="0" interpolation="0" row="991"/>
+			<key value="0" interpolation="0" row="992"/>
+			<key value="255" interpolation="0" row="993"/>
+			<key value="123" interpolation="0" row="994"/>
+			<key value="213" interpolation="0" row="995"/>
+			<key value="255" interpolation="0" row="996"/>
+			<key value="0" interpolation="0" row="997"/>
+			<key value="0" interpolation="0" row="998"/>
+			<key value="254" interpolation="0" row="999"/>
+			<key value="0" interpolation="0" row="1000"/>
+			<key value="255" interpolation="0" row="1001"/>
+			<key value="0" interpolation="0" row="1002"/>
+			<key value="255" interpolation="0" row="1003"/>
+			<key value="0" interpolation="0" row="1004"/>
+			<key value="0" interpolation="0" row="1005"/>
 			<key value="255" interpolation="0" row="1008"/>
 			<key value="0" interpolation="0" row="1009"/>
 			<key value="0" interpolation="1" row="1010"/>
@@ -120,7 +142,6 @@
 			<key value="255" interpolation="1" row="1088"/>
 			<key value="0" interpolation="1" row="1089"/>
 			<key value="255" interpolation="0" row="1138"/>
-
 		</track>
 		<track name="bg_clr_g">
 			<key value="30" interpolation="0" row="48"/>
@@ -157,6 +178,28 @@
 			<key value="0" interpolation="0" row="976"/>
 			<key value="255" interpolation="0" row="977"/>
 			<key value="0" interpolation="0" row="978"/>
+			<key value="0" interpolation="0" row="984"/>
+			<key value="255" interpolation="0" row="985"/>
+			<key value="0" interpolation="0" row="986"/>
+			<key value="34" interpolation="0" row="987"/>
+			<key value="255" interpolation="0" row="988"/>
+			<key value="23" interpolation="0" row="989"/>
+			<key value="123" interpolation="0" row="990"/>
+			<key value="255" interpolation="0" row="991"/>
+			<key value="234" interpolation="0" row="992"/>
+			<key value="234" interpolation="0" row="993"/>
+			<key value="255" interpolation="0" row="994"/>
+			<key value="55" interpolation="0" row="995"/>
+			<key value="34" interpolation="0" row="996"/>
+			<key value="255" interpolation="0" row="997"/>
+			<key value="0" interpolation="0" row="998"/>
+			<key value="234" interpolation="0" row="999"/>
+			<key value="255" interpolation="0" row="1000"/>
+			<key value="0" interpolation="0" row="1001"/>
+			<key value="255" interpolation="0" row="1002"/>
+			<key value="0" interpolation="0" row="1003"/>
+			<key value="255" interpolation="0" row="1004"/>
+			<key value="0" interpolation="0" row="1005"/>
 			<key value="0" interpolation="0" row="1008"/>
 			<key value="255" interpolation="0" row="1009"/>
 			<key value="0" interpolation="1" row="1010"/>
@@ -196,7 +239,6 @@
 			<key value="60" interpolation="0" row="303"/>
 			<key value="20" interpolation="2" row="304"/>
 			<key value="0" interpolation="0" row="319"/>
-
 			<key value="0" interpolation="0" row="912"/>
 			<key value="0" interpolation="0" row="920"/>
 			<key value="255" interpolation="2" row="928"/>
@@ -215,6 +257,28 @@
 			<key value="0" interpolation="0" row="976"/>
 			<key value="0" interpolation="0" row="977"/>
 			<key value="255" interpolation="0" row="978"/>
+			<key value="0" interpolation="0" row="984"/>
+			<key value="234" interpolation="0" row="985"/>
+			<key value="255" interpolation="0" row="986"/>
+			<key value="34" interpolation="0" row="987"/>
+			<key value="65" interpolation="0" row="988"/>
+			<key value="255" interpolation="0" row="989"/>
+			<key value="23" interpolation="0" row="990"/>
+			<key value="0" interpolation="0" row="991"/>
+			<key value="255" interpolation="0" row="992"/>
+			<key value="0" interpolation="0" row="993"/>
+			<key value="0" interpolation="0" row="994"/>
+			<key value="255" interpolation="0" row="995"/>
+			<key value="0" interpolation="0" row="996"/>
+			<key value="0" interpolation="0" row="997"/>
+			<key value="255" interpolation="0" row="998"/>
+			<key value="0" interpolation="0" row="999"/>
+			<key value="0" interpolation="0" row="1000"/>
+			<key value="0" interpolation="0" row="1001"/>
+			<key value="0" interpolation="0" row="1002"/>
+			<key value="0" interpolation="0" row="1003"/>
+			<key value="0" interpolation="0" row="1004"/>
+			<key value="255" interpolation="0" row="1005"/>
 			<key value="0" interpolation="0" row="1008"/>
 			<key value="0" interpolation="0" row="1009"/>
 			<key value="255" interpolation="1" row="1010"/>
@@ -262,7 +326,6 @@
 			<key value="11" interpolation="0" row="536"/>
 			<key value="12" interpolation="0" row="552"/>
 			<key value="13" interpolation="0" row="576"/>
-
 		</track>
 		<track name="intro_opa">
 			<key value="100" interpolation="2" row="0"/>
