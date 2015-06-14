@@ -32,7 +32,7 @@ void draw()
     //background(0);
     lights();
     Rain();
-    rotatingLabel();
+    ending();
 }
 
 void rotatingLabel()
@@ -56,7 +56,16 @@ void Rain()
     ellipse(random(width), random(height), ell_size*3 , ell_size*3);
     popMatrix();
 }
-
+void ending()
+{
+    pushMatrix();
+    noStroke();
+    fill (255,255,255,intro_opa);
+    translate(width/2, height/2); // put 0,0,0 at the center of the screen
+    textSize(32);
+    text("<-----Spooky------>\nMade by\n\nmarski\nbensku\nmeriloh1\n", 40, 40, 40);
+    popMatrix();
+}
 
 // Move camera smoothly
 void moveCamera (float posX, float posY, float posZ, float centerX, float centerY, float centerZ, float upX, float upY, float upZ, float damping)

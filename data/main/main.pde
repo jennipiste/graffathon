@@ -178,7 +178,11 @@ void draw()
     {
         scene5();
     }
-    else if (scene==10) scene10();
+    else if (scene==10) 
+    {
+        println("im here");
+        scene10();
+    }
 }
 
 void scene0()
@@ -570,6 +574,7 @@ void scene6()
 //Ending scene
 void scene10()
 {
+    println("i go to scene10");
     rain();
     ending();
 }
@@ -1034,10 +1039,11 @@ void rotatingLabel()
 
 void ending()
 {
+    moveCamera(0, 0, 1000, 0, 0, 0, 0, 1, 0, 20);
     pushMatrix();
     noStroke();
     fill (255,255,255,intro_opa);
-    translate(width/2, height/2); // put 0,0,0 at the center of the screen
+    translate(100, 100); // put 0,0,0 at the center of the screen
     textSize(32);
     text("<-----Spooky------>\nMade by\n\nmarski\nbensku\nmeriloh1\n", 40, 40, 40);
     popMatrix();
