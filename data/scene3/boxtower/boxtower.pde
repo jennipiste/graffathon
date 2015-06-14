@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // ======================ME WANT MORE GLOBALS PLS======================
 Mbox[][] bTowers;
 float camPosX, camPosY, camPosZ;
@@ -20,21 +21,45 @@ void setup () {
   demon = loadImage("demon.jpg");
   textureMode(IMAGE);
   
+=======
+import moonlander.library.*;
+
+// Minim must be imported when using Moonlander with soundtrack.
+import ddf.minim.*;
+
+Moonlander moonlander;
+
+Mbox[][] bTowers;
+float camPosX, camPosY, camPosZ;
+float camCentX, camCentY, camCentZ;
+float scene_1_subscene = 1;
+
+void setup () {
+  size(800, 600, P3D);
+
+>>>>>>> 12bc8eecb3bde850af486b15cd19f131e8fdd8cd
   Mbox[][] bTowers1 = new Mbox[8][]; // Array of box tower arrays
   for (int i = -4; i < 4; i++) {
     Mbox[] bG = makeBoxTower((float)random(90,110)*i,0,(float)random(600,700)*i);
     bTowers1[i+4] = bG; // Save to array
   }
-  
+
   bTowers = bTowers1;
+  moonlander = Moonlander.initWithSoundtrack(this, "../../music/deepspace.mp3", 127, 8);
+  moonlander.start();
 }
 
 void draw() {
+<<<<<<< HEAD
 
   // ======================SCENE VARIABLES======================
 
+=======
+  moonlander.update();
+>>>>>>> 12bc8eecb3bde850af486b15cd19f131e8fdd8cd
   lights();
   float time = (float)millis();
+<<<<<<< HEAD
 
   // ===================================================
 
@@ -67,62 +92,67 @@ void draw() {
 
   
   if (time/1000 < 4) {
+=======
+  int scene_1_subscene = moonlander.getIntValue("scene_1_subscene");
+
+  if (scene_1_subscene == 1) {
+>>>>>>> 12bc8eecb3bde850af486b15cd19f131e8fdd8cd
     beginCamera();
     camera(0, -100, 2000, 0, -500, -2000, 0, 1, 0);
     camPosX = 0; camPosY = -100; camPosZ = 2000; camCentX = 0; camCentY = -500; camCentZ = -2000;
     endCamera();
   }
 
-  if (time/1000 > 35) {
+  if (scene_1_subscene == 9) {
     beginCamera();
     moveCamera(500, 0, -1500, 0, -200, 3000, 0, 1, 0, 100);
     endCamera();
   }
-  else if (time/1000 > 30) {
+  else if (scene_1_subscene == 8) {
     beginCamera();
     moveCamera(500, 0, -1500, 0, -200, -3000, 0, 1, 0, 100);
     endCamera();
   }
-  
-  else if (time/1000 > 25) {
+
+  else if (scene_1_subscene == 7) {
     beginCamera();
     moveCamera(-500, 0, -1000, 0, -300, -2000, 0, 1, 0, 100);
     endCamera();
   }
-  
-  else if (time/1000 > 20) {
+
+  else if (scene_1_subscene == 6) {
     beginCamera();
     moveCamera(500, 0, -500, 200, -500, -2000, 0, 1, 0, 100);
     endCamera();
   }
-  
-  else if (time/1000 > 15) {
+
+  else if (scene_1_subscene == 5) {
     beginCamera();
     moveCamera(-500, 0, 200, -200, -500, -2000, 0, 1, 0, 100);
     endCamera();
   }
-  
-  else if (time/1000 > 10) {
+
+  else if (scene_1_subscene == 4) {
     beginCamera();
     moveCamera(500, 0, 800, 0, 0, -2000, 0, 1, 0, 100);
     endCamera();
   }
-  
-  else if (time/1000 > 7) {
+
+  else if (scene_1_subscene == 3) {
     beginCamera();
     moveCamera(0, 0, 1200, 0, -500, -2000, 0, 1, 0, 100);
     endCamera();
   }
-  
-  else if (time/1000 > 5) {
+
+  else if (scene_1_subscene == 2) {
     beginCamera();
     moveCamera(0, 0, 1500, 0, -500, -2000, 0, 1, 0, 100);
     endCamera();
   }
-  
-  
-  
-  
+
+
+
+
   for (int i = 0; i < bTowers.length; i++) {
     pushMatrix();
     for (int j = 0; j < bTowers[i].length; j++) {
@@ -132,7 +162,7 @@ void draw() {
     }
     popMatrix();
   }
-  
+
 }
 
 Mbox[] makeBoxTower(float x, float y, float z) {
@@ -175,20 +205,25 @@ void moveCamera (float posX, float posY, float posZ, float centerX, float center
     }
     camera(camPosX, camPosY, camPosZ, camCentX, camCentY, camCentZ, upX, upY, upZ);
 }
-  
+
 
 class Mbox { // Class of a box
   float xpos;
   float ypos;
   float zpos;
   float rot = 0; // Rotation
+<<<<<<< HEAD
   
   Mbox(float posX, float posY, float posZ) {
+=======
+
+  Mbox(float posX, float posY, float posZ, float sz) {
+>>>>>>> 12bc8eecb3bde850af486b15cd19f131e8fdd8cd
     xpos = posX;
     ypos = posY;
     zpos = posZ;
   }
-  
+
   float getPosX() {
     return xpos;
   }
@@ -198,7 +233,7 @@ class Mbox { // Class of a box
   float getPosZ() {
     return zpos;
   }
-  
+
   void move (float posX, float posY, float posZ, float damping) { // Move smoothly to a pos
     float dif = ypos - posY;
     if (abs(dif) > 1) {
@@ -213,17 +248,17 @@ class Mbox { // Class of a box
       zpos -= dif/damping;
     }
   }
-  
+
   void translate_(float x, float y, float z) { // Saves coordinates, doesn't draw
     xpos = x;
     ypos = y;
     zpos = z;
   }
-  
+
   void rotate_(float angle) {
     rot = angle;
   }
-  
+
   void display() { // Moves the box in an own matrix
     pushMatrix();
     translate(xpos, ypos, zpos);
