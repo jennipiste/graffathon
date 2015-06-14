@@ -158,11 +158,18 @@ void scene1()
         camPosX = 0; camPosY = -100; camPosZ = 3500; camCentX = 0; camCentY = -500; camCentZ = -2000;
         endCamera();
     }
-
-    if (scene_1_subscene == 9) 
+    
+    if (scene_1_subscene == 10) 
     {
         beginCamera();
-        moveCamera(500, 0, -1500, 0, -200, 3000, 0, 1, 0, 100);
+        moveCamera(-500, -1000, 0, 0, -200, 3000, 0, 1, 0, 600);
+        endCamera();
+    }
+
+    else if (scene_1_subscene == 9) 
+    {
+        beginCamera();
+        moveCamera(500, 0, -1500, 0, -200, 3500, 0, 1, 0, 100);
         endCamera();
     }
     else if (scene_1_subscene == 8) 
@@ -196,7 +203,7 @@ void scene1()
     else if (scene_1_subscene == 4) 
     {
         beginCamera();
-        moveCamera(600, 0, -500, 0, 0, -2000, 0, 1, 0, 100);
+        moveCamera(800, 0, -500, -50, 0, -2000, 0, 1, 0, 100);
         endCamera();
     }
 
@@ -210,7 +217,7 @@ void scene1()
     else if (scene_1_subscene == 2) 
     {
         beginCamera();
-        moveCamera(0, 0, 1500, 0, -500, -2000, 0, 1, 0, 100);
+        moveCamera(0, 0, 1500, 0, -500, -2000, 0, 1, 0, 300);
         endCamera();
     }
 
