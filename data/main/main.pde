@@ -75,7 +75,7 @@ void setup()
 {
 
     // For all
-    size(1360, 768, P3D);
+    size(1280, 720, P3D);
 
     // LOAD IMAGES
     happy = loadImage("happy.jpg");
