@@ -27,6 +27,9 @@ int bg_clr_g = 0;
 int bg_clr_b = 0;
 int scene_2_subscene = 1;
 int pyoritin = 2;
+
+int intro_blurr = 1;
+int intro_opa = 100;
 // int diamClr = 0;
 
 float time = (float)millis()/1000;
@@ -128,6 +131,9 @@ void draw()
 
     pyoritin = moonlander.getIntValue("pyoritin");
 
+    intro_opa = moonlander.getIntValue("intro_opa");
+    intro_blurr = moonlander.getIntValue("intro_blur");
+
      // ====================== ====== =============================
 
 
@@ -142,7 +148,11 @@ void draw()
 
 
     // Main scene selector(MOONLANDER)
-    if(scene==1)
+    if (scene == 0)
+    {
+        scene0();
+    }
+    else if(scene==1)
     {
         scene1();
     }
@@ -162,6 +172,14 @@ void draw()
     {
         scene5();
     }
+}
+
+void scene0()
+{
+
+    background(0);
+    rain();
+    rotatingLabel();
 }
 
 void scene1()
@@ -857,6 +875,27 @@ Mbox[] makeBoxTower(float x, float y, float z) {
   Mbox b5 = new Mbox(0, -100-boxdist, 0);
   Mbox[] array = {b1, b2, b3, b4, b5};
   return array;
+}
+void rain()
+{
+    pushMatrix();
+    noStroke();
+    fill(0,10);
+    rect(0 ,0, width, height);
+    fill(255);
+    ellipse(random(width), random(height), intro_blurr*3 , intro_blurr*3);
+    popMatrix();
+}
+void rotatingLabel()
+{
+
+    pushMatrix();
+    noStroke();
+    fill (255,255,255,intro_opa);
+    translate(width/2, height/2); // put 0,0,0 at the center of the screen
+    textSize(32);
+    text("Crabhics presents\nSpooky", 40, 40, 40);
+    popMatrix();
 }
 // ====================================================================================================================================================
 //========================================================================================================================================================
