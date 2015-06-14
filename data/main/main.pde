@@ -11,11 +11,11 @@ import ddf.minim.*;
 Moonlander moonlander;
 
 // Camera start values float
-float camPosX = 0; 
-float camPosY = 0; 
+float camPosX = 0;
+float camPosY = 0;
 float camPosZ = 0;
-float camCentX = 0; 
-float camCentY = 0; 
+float camCentX = 0;
+float camCentY = 0;
 float camCentZ = 0;
 
 // MOONLANDER
@@ -25,10 +25,11 @@ int face = 1; //1 happy 2 sad 3 demon
 int bg_clr_r = 0;
 int bg_clr_g = 0;
 int bg_clr_b = 0;
+int scene_2_subscene = 1;
 int pyoritin = 2;
 // int diamClr = 0;
 
-
+float time = (float)millis()/1000;
 
 
 //SCENE1
@@ -39,6 +40,24 @@ float boxsize=100;
 float boxdist=40;
 
 //SCENE2
+// Stars parameters
+int depth = 10;
+int nbStarsMax = 10000;
+Stars[] tabStars = new Stars[nbStarsMax];
+int maxStarsSpeed = 6;
+int taille = 1;
+int transparency = 255;
+int ptsW, ptsH;
+PImage ball_image;
+int numPointsW;
+int numPointsH_2pi;
+int numPointsH;
+float[] coorX;
+float[] coorY;
+float[] coorZ;
+float[] multXZ;
+int red = 0;
+float rotation = 0;
 
 //SCENE3
 
@@ -57,11 +76,12 @@ void setup()
     happy = loadImage("happy.jpg");
     sad = loadImage("sad.jpg");
     demon = loadImage("demon.jpg");
+    ball_image=loadImage("texture.jpg");
     textureMode(IMAGE);
-    
+
     // BOX TOWER INIT WHY HERE?
     Mbox[][] bTowers1 = new Mbox[8][]; // Array of box tower arrays
-    for (int i = -4; i < 4; i++) 
+    for (int i = -4; i < 4; i++)
     {
         Mbox[] bG = makeBoxTower((float)random(90,110)*i,0,(float)random(600,700)*i);
         bTowers1[i+4] = bG; // Save to array
@@ -69,7 +89,17 @@ void setup()
     bTowers = bTowers1;
 
     //SCENE2 SETUP
-
+    colorMode(RGB,255);
+    loop();
+    strokeWeight(taille);
+    ptsW=100;
+    ptsH=100;
+    initializeSphere(ptsW, ptsH);
+    // Stars initialisation
+    for(int nb=0; nb<nbStarsMax; nb++) {
+        tabStars[nb] = new Stars(-random(depth*255),random(-6*height,6*height)
+        ,random(-6*width,6*width),random(1,maxStarsSpeed));
+    }
 
     //SCENE3 SETUP
 
@@ -89,14 +119,15 @@ void draw()
     scene = moonlander.getIntValue("scene");
     scene_1_subscene = moonlander.getIntValue("scene_1_subscene");
     face = moonlander.getIntValue("face");
+    scene_2_subscene = moonlander.getIntValue("scene_2_subscene");
 
     // RGB values for background
     bg_clr_r = moonlander.getIntValue("bg_clr_r");
     bg_clr_g = moonlander.getIntValue("bg_clr_g");
     bg_clr_b = moonlander.getIntValue("bg_clr_b");
-    
+
     pyoritin = moonlander.getIntValue("pyoritin");
-    
+
      // ====================== ====== =============================
 
 
@@ -107,7 +138,7 @@ void draw()
     // TEST PR
     //println("(",camPosX,",",camPosY,",",camPosZ,")");
 
-    fill(105);
+    //fill(105);
 
 
     // Main scene selector(MOONLANDER)
@@ -158,63 +189,63 @@ void scene1()
         camPosX = 0; camPosY = -100; camPosZ = 3500; camCentX = 0; camCentY = -500; camCentZ = -2000;
         endCamera();
     }
-    
-    if (scene_1_subscene == 10) 
+
+    else if (scene_1_subscene == 10)
     {
         beginCamera();
         moveCamera(-500, -1000, 0, 0, -200, 3000, 0, 1, 0, 600);
         endCamera();
     }
 
-    else if (scene_1_subscene == 9) 
+    else if (scene_1_subscene == 9)
     {
         beginCamera();
         moveCamera(500, 0, -1500, 0, -200, 3500, 0, 1, 0, 100);
         endCamera();
     }
-    else if (scene_1_subscene == 8) 
+    else if (scene_1_subscene == 8)
     {
         beginCamera();
         moveCamera(-500, 0, 0, 0, -200, -3000, 0, 1, 0, 10);
         endCamera();
     }
 
-    else if (scene_1_subscene == 7) 
+    else if (scene_1_subscene == 7)
     {
         beginCamera();
         moveCamera(-500, 0, -1000, 0, -300, -2000, 0, 1, 0, 10);
         endCamera();
     }
 
-    else if (scene_1_subscene == 6) 
+    else if (scene_1_subscene == 6)
     {
         beginCamera();
         moveCamera(500, 0, -500, 200, -500, -2000, 0, 1, 0, 10);
         endCamera();
     }
 
-    else if (scene_1_subscene == 5) 
+    else if (scene_1_subscene == 5)
     {
         beginCamera();
         moveCamera(-500, 0, 200, -200, -500, -2000, 0, 1, 0, 10);
         endCamera();
     }
 
-    else if (scene_1_subscene == 4) 
+    else if (scene_1_subscene == 4)
     {
         beginCamera();
         moveCamera(800, 0, -500, -50, 0, -2000, 0, 1, 0, 100);
         endCamera();
     }
 
-    else if (scene_1_subscene == 3) 
+    else if (scene_1_subscene == 3)
     {
         beginCamera();
         moveCamera(0, 0, 1200, 0, -500, -2000, 0, 1, 0, 100);
         endCamera();
     }
 
-    else if (scene_1_subscene == 2) 
+    else if (scene_1_subscene == 2)
     {
         beginCamera();
         moveCamera(0, 0, 1500, 0, -500, -2000, 0, 1, 0, 300);
@@ -237,11 +268,97 @@ void scene1()
 
 }
 
-
 void scene2()
 {
+    pushMatrix();
+    if (scene_2_subscene == 1) {
+        camPosX = 2500;
+        camPosY = 0;
+        camPosZ = 0;
+        camCentX = 0;
+        camCentY = 0;
+        camCentZ = 0;
+    }
+    noStroke();
+    lights();
+    fill(red, 0, 0, 150);
+    camera(camPosX, camPosY, camPosZ, camCentX, camCentY, camCentZ, 0, 1, 0);
+    if (scene_2_subscene == 2) {
+        rotation = time*PI/2;
+        moveCamera(800.0, 0.0, 0.0, 0.0, -1000.0, 0.0, 0, 1, 0, 50.0);
+    }
+    pushMatrix();
+    if (scene_2_subscene >= 2) {
+        println("ROTATE!!");
+        rotateZ(time);
+        red = int(255*abs(sin((float)millis()/2000)));
+    }
+    textureSphere(700, 700, 700, ball_image);
+    // sphere(700);
+    popMatrix();
 
-    float time = (float)millis()/1000;
+    println("SUBSCENE: " + scene_2_subscene);
+    println("ROTATION: "+ rotation);
+    pushMatrix();
+    if (scene_2_subscene == 3) {
+        if (rotation > 3*PI/4) {
+            rotation = 3*PI/4;
+            moveCamera(800.0, -800.0, 0.0, 0.0, -1000.0, 0.0, 0, 1, 0, 50.0);
+        }
+        rotateZ(rotation);
+    }
+    if (scene_2_subscene == 4) {
+        pushMatrix();
+            translate(0, 0, 100);
+            rotateX(5*sin(time*0.5));
+            // rotate(time);
+            DiamondStar n2 = new DiamondStar(-810, 0, 0);
+        popMatrix();
+        rotateX(5*sin(time*0.5));
+    } else if (scene_2_subscene == 5) {
+        pushMatrix();
+            translate(0, 0, -100);
+            // rotate(time);
+            rotateX(5*sin(time*0.5));
+            DiamondStar n3 = new DiamondStar(-810, 0, 0);
+        popMatrix();
+    } else if (scene_2_subscene == 6) {
+        pushMatrix();
+            translate(0, -100, 100);
+            rotateX(5*sin(time*0.5));
+            // rotate(time);
+            DiamondStar n4 = new DiamondStar(-810, 0, 0);
+        popMatrix();
+    } else if (scene_2_subscene == 7) {
+        pushMatrix();
+            translate(0, -100, -100);
+            // rotate(time);
+            rotateX(5*sin(time*0.5));
+            DiamondStar n5 = new DiamondStar(-810, 0, 0);
+        popMatrix();
+    } else if (scene_2_subscene == 8) {
+        pushMatrix();
+            translate(0, 0, 200);
+            rotateX(5*sin(time*0.5));
+            // rotate(time);
+            DiamondStar n6 = new DiamondStar(-810, 0, 0);
+        popMatrix();
+    } else if (scene_2_subscene == 9) {
+        pushMatrix();
+            translate(0, 100, -200);
+            // rotate(time);
+            rotateX(5*sin(time*0.5));
+            DiamondStar n7 = new DiamondStar(-810, 0, 0);
+        popMatrix();
+    }
+    DiamondStar n = new DiamondStar(-810,0,0);
+    popMatrix();
+    popMatrix();
+}
+
+
+void scene3()
+{
 
     beginCamera();
     camera(camPosX, camPosY, camPosZ, camCentX, camCentY, camCentZ, 0, 1, 0);
@@ -251,33 +368,33 @@ void scene2()
     moveCamera(100.0, -400.0, 100.0, 0.0, 0.0, 0.0, 0, 1, 0, 50.0);
 }
 
-void scene3()
+void scene4()
 {
     // Cam position
     camPosX = 0;
     camPosY = 500;
     camPosZ = 0;
-    
+
     //Needed for every scene!
     beginCamera();
     camera(camPosX, camPosY, camPosZ, camCentX, camCentY, camCentZ, 0, 1, 0);
     endCamera();
     moveCamera(0, 0, 0, 0.0, 0.0, 0.0, 1, 0, 0, 5.0);
-    
+
     pushMatrix();
     rotateY(millis()*PI/2000);
     DiamondStar n = new DiamondStar(0,0,0);
     popMatrix();
 }
 
-void scene4()
+void scene5()
 {
     // Cam position
     camPosX = 0;
     camPosY = 0;
     camPosZ = 0;
-    camCentX = 0; 
-    camCentY = 0; 
+    camCentX = 0;
+    camCentY = 0;
     camCentZ = 0;
 
     //Needed for every scene!
@@ -287,18 +404,18 @@ void scene4()
     moveCamera(100.0, 400.0, 100.0, 0.0, 0.0, 0.0, 0, 1, 0, 5.0);
 }
 
-void scene5()
+void scene6()
 {
     // Cam position
     camPosX = 400;
     camPosY = 400;
     camPosZ = 400;
-    
+
     //Needed for every scene!
     beginCamera();
     camera(camPosX, camPosY, camPosZ, camCentX, camCentY, camCentZ, 0, 1, 0);
     endCamera();
- 
+
     DiamondStar n = new DiamondStar(0,200,0);
     rotateX(2*PI/3);
     DiamondStar n2 = new DiamondStar(0,200,0);
@@ -310,6 +427,94 @@ void scene5()
 // =================================CLASSES===================================================================================================
 // ====================================================================================================================================================
 // ====================================================================================================================================================
+void initializeSphere(int numPtsW, int numPtsH_2pi) {
+
+  // The number of points around the width and height
+  numPointsW=numPtsW+1;
+  numPointsH_2pi=numPtsH_2pi;  // How many actual pts around the sphere (not just from top to bottom)
+  numPointsH=ceil((float)numPointsH_2pi/2)+1;  // How many pts from top to bottom (abs(....) b/c of the possibility of an odd numPointsH_2pi)
+
+  coorX=new float[numPointsW];   // All the x-coor in a horizontal circle radius 1
+  coorY=new float[numPointsH];   // All the y-coor in a vertical circle radius 1
+  coorZ=new float[numPointsW];   // All the z-coor in a horizontal circle radius 1
+  multXZ=new float[numPointsH];  // The radius of each horizontal circle (that you will multiply with coorX and coorZ)
+
+  for (int i=0; i<numPointsW ;i++) {  // For all the points around the width
+    float thetaW=i*2*PI/(numPointsW-1);
+    coorX[i]=sin(thetaW);
+    coorZ[i]=cos(thetaW);
+  }
+
+  for (int i=0; i<numPointsH; i++) {  // For all points from top to bottom
+    if (int(numPointsH_2pi/2) != (float)numPointsH_2pi/2 && i==numPointsH-1) {  // If the numPointsH_2pi is odd and it is at the last pt
+      float thetaH=(i-1)*2*PI/(numPointsH_2pi);
+      coorY[i]=cos(PI+thetaH);
+      multXZ[i]=0;
+    }
+    else {
+      //The numPointsH_2pi and 2 below allows there to be a flat bottom if the numPointsH is odd
+      float thetaH=i*2*PI/(numPointsH_2pi);
+
+      //PI+ below makes the top always the point instead of the bottom.
+      coorY[i]=cos(PI+thetaH);
+      multXZ[i]=sin(thetaH);
+    }
+  }
+}
+
+void textureSphere(float rx, float ry, float rz, PImage t) {
+  // These are so we can map certain parts of the image on to the shape
+  float changeU=t.width/(float)(numPointsW-1);
+  float changeV=t.height/(float)(numPointsH-1);
+  float u=0;  // Width variable for the texture
+  float v=0;  // Height variable for the texture
+
+  beginShape(TRIANGLE_STRIP);
+  texture(t);
+  for (int i=0; i<(numPointsH-1); i++) {  // For all the rings but top and bottom
+    // Goes into the array here instead of loop to save time
+    float coory=coorY[i];
+    float cooryPlus=coorY[i+1];
+
+    float multxz=multXZ[i];
+    float multxzPlus=multXZ[i+1];
+
+    for (int j=0; j<numPointsW; j++) {  // For all the pts in the ring
+      normal(coorX[j]*multxz, coory, coorZ[j]*multxz);
+      vertex(coorX[j]*multxz*rx, coory*ry, coorZ[j]*multxz*rz, u, v);
+      normal(coorX[j]*multxzPlus, cooryPlus, coorZ[j]*multxzPlus);
+      vertex(coorX[j]*multxzPlus*rx, cooryPlus*ry, coorZ[j]*multxzPlus*rz, u, v+changeV);
+      u+=changeU;
+    }
+    v+=changeV;
+    u=0;
+  }
+  endShape();
+}
+
+class Stars {
+  float x, y, z;
+  float dX;
+
+  Stars(float coordX, float coordY, float coordZ, float speedX) {
+    x  = coordX;
+    y  = coordY;
+    z  = coordZ;
+    dX = speedX;
+  }
+
+  void aff() {
+    stroke(255,transparency);
+    point(x,y,z);
+  }
+
+  void anim() {
+    x = x + dX;
+    if(x>=0)
+      x = -1023.0;
+  }
+}
+
 class DiamondStar
 {
     float x,y,z;
@@ -349,15 +554,15 @@ class DiamondStar
         rotateY(-(float)millis()/100);
         Diamond d2 = new Diamond(0,-100,0);
         popMatrix();
-        
+
         rotateZ(PI/2);
 
-        // Diamond 3  
+        // Diamond 3
         pushMatrix();
         rotateY((float)millis()/100);
         Diamond d3 = new Diamond(0,100,0);
         popMatrix();
-        
+
         // Diamond 4
         pushMatrix();
         rotateY((float)millis()/100);
@@ -374,14 +579,14 @@ class DiamondStar
 
         // Diamond 6
         pushMatrix();
-        rotateY((float)millis()/100); 
+        rotateY((float)millis()/100);
         Diamond d6 = new Diamond(0,-100,0);
         popMatrix();
         popMatrix();
     }
 }
 
-class Diamond 
+class Diamond
 {
     float x, y, z;
     float size = 1;
@@ -406,20 +611,20 @@ class Diamond
     }
 
     Diamond(float xcoord, float ycoord, float zcoord, int disableFill)
-    {   
+    {
         x = xcoord;
         y = ycoord;
         z = zcoord;
-        
+
         if(disableFill == 1)
         {
             noFill();
         }
         make_shape(size);
     }
-    
+
     Diamond(float xcoord, float ycoord, float zcoord,int disableFill, float size)
-    {   
+    {
         x = xcoord;
         y = ycoord;
         z = zcoord;
@@ -497,13 +702,13 @@ class Mbox { // Class of a box
   float ypos;
   float zpos;
   float rot = 0; // Rotation
-  
+
   Mbox(float posX, float posY, float posZ) {
     xpos = posX;
     ypos = posY;
     zpos = posZ;
   }
-  
+
   float getPosX() {
     return xpos;
   }
@@ -513,7 +718,7 @@ class Mbox { // Class of a box
   float getPosZ() {
     return zpos;
   }
-  
+
   void move (float posX, float posY, float posZ, float damping) { // Move smoothly to a pos
     float dif = ypos - posY;
     if (abs(dif) > 1) {
@@ -528,17 +733,17 @@ class Mbox { // Class of a box
       zpos -= dif/damping;
     }
   }
-  
+
   void translate_(float x, float y, float z) { // Saves coordinates, doesn't draw
     xpos = x;
     ypos = y;
     zpos = z;
   }
-  
+
   void rotate_(float angle) {
     rot = angle;
   }
-  
+
   void display() { // Moves the box in an own matrix
     pushMatrix();
     translate(xpos, ypos, zpos);
@@ -558,9 +763,9 @@ class Mbox { // Class of a box
 // =================================HELPER FUNCTIONS===================================================================================================
 // ====================================================================================================================================================
 
-// Move camera smoothly    
-void moveCamera (float posX, float posY, float posZ, float centerX, float centerY, float centerZ, float upX, float upY, float upZ, float damping) 
-{ 
+// Move camera smoothly
+void moveCamera (float posX, float posY, float posZ, float centerX, float centerY, float centerZ, float upX, float upY, float upZ, float damping)
+{
     // Move smoothly to a pos
     // Position
     float dif = camPosY - posY;

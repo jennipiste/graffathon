@@ -1,4 +1,4 @@
-<sync rows="512">
+<sync rows="1000">
 	<tracks>
 		<track name="scene">
 			<key row="48" interpolation="0" value="1"/>
@@ -110,6 +110,12 @@
 			<key row="240" interpolation="0" value="2"/>
 			<key row="288" interpolation="0" value="15"/>
 			<key row="304" interpolation="0" value="2"/>
+		</track>
+		<track name="scene_2_subscene">
+			<key interpolation="0" row="320" value="1"/>
+			<key interpolation="0" row="336" value="2"/>
+			<key interpolation="0" row="376" value="3"/>
+			<key interpolation="0" row="408" value="4"/>
 		</track>
 	</tracks>
 	<bookmarks/>
