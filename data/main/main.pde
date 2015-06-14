@@ -26,6 +26,7 @@ int bg_clr_r = 0;
 int bg_clr_g = 0;
 int bg_clr_b = 0;
 int scene_2_subscene = 1;
+int pyoritin = 2;
 // int diamClr = 0;
 
 float time = (float)millis()/1000;
@@ -69,7 +70,7 @@ void setup()
 {
 
     // For all
-    size(800, 600, P3D);
+    size(1360, 768, P3D);
 
     // LOAD IMAGES
     happy = loadImage("happy.jpg");
@@ -124,6 +125,9 @@ void draw()
     bg_clr_r = moonlander.getIntValue("bg_clr_r");
     bg_clr_g = moonlander.getIntValue("bg_clr_g");
     bg_clr_b = moonlander.getIntValue("bg_clr_b");
+
+    pyoritin = moonlander.getIntValue("pyoritin");
+
      // ====================== ====== =============================
 
 
@@ -134,19 +138,15 @@ void draw()
     // TEST PR
     //println("(",camPosX,",",camPosY,",",camPosZ,")");
 
-    fill(105);
+    //fill(105);
 
 
     // Main scene selector(MOONLANDER)
-    if(scene==0)
-    {
-        scene0();
-    }
     if(scene==1)
     {
         scene1();
     }
-    else if(scene==2)
+    if(scene==2)
     {
         scene2();
     }
@@ -162,11 +162,6 @@ void draw()
     {
         scene5();
     }
-}
-
-void scene0()
-{
-    loadCrab();
 }
 
 void scene1()
@@ -190,21 +185,21 @@ void scene1()
 
     if (scene_1_subscene == 1) {
         beginCamera();
-        camera(0, -100, 2000, 0, -500, -2000, 0, 1, 0);
-        camPosX = 0; camPosY = -100; camPosZ = 2000; camCentX = 0; camCentY = -500; camCentZ = -2000;
+        camera(0, -100, 3500, 0, -500, -2000, 0, 1, 0);
+        camPosX = 0; camPosY = -100; camPosZ = 3500; camCentX = 0; camCentY = -500; camCentZ = -2000;
         endCamera();
     }
 
     if (scene_1_subscene == 9)
     {
         beginCamera();
-        moveCamera(500, 0, -1500, 0, -200, 3000, 0, 1, 0, 10);
+        moveCamera(500, 0, -1500, 0, -200, 3000, 0, 1, 0, 100);
         endCamera();
     }
     else if (scene_1_subscene == 8)
     {
         beginCamera();
-        moveCamera(500, 0, -1500, 0, -200, -3000, 0, 1, 0, 10);
+        moveCamera(-500, 0, 0, 0, -200, -3000, 0, 1, 0, 10);
         endCamera();
     }
 
@@ -232,21 +227,21 @@ void scene1()
     else if (scene_1_subscene == 4)
     {
         beginCamera();
-        moveCamera(500, 0, 800, 0, 0, -2000, 0, 1, 0, 10);
+        moveCamera(600, 0, -500, 0, 0, -2000, 0, 1, 0, 100);
         endCamera();
     }
 
     else if (scene_1_subscene == 3)
     {
         beginCamera();
-        moveCamera(0, 0, 1200, 0, -500, -2000, 0, 1, 0, 10);
+        moveCamera(0, 0, 1200, 0, -500, -2000, 0, 1, 0, 100);
         endCamera();
     }
 
     else if (scene_1_subscene == 2)
     {
         beginCamera();
-        moveCamera(0, 0, 1500, 0, -500, -2000, 0, 1, 0, 10);
+        moveCamera(0, 0, 1500, 0, -500, -2000, 0, 1, 0, 100);
         endCamera();
     }
 
@@ -257,7 +252,7 @@ void scene1()
     pushMatrix();
     for (int j = 0; j < bTowers[i].length; j++) {
       Mbox box = bTowers[i][j];
-      box.translate_(box.getPosX()+(cos((float)millis()/1000*2*PI)), box.getPosY(), box.getPosZ()+sin((float)millis()/1000*2*PI));
+      box.translate_(box.getPosX()+(cos((float)millis()/1000*pyoritin*PI)), box.getPosY(), box.getPosZ()+sin((float)millis()/1000*pyoritin*PI));
       box.displayInMatrix();
     }
     popMatrix();
@@ -268,8 +263,18 @@ void scene1()
 
 void scene2()
 {
-    camPosX = 2500;
+    pushMatrix();
+    if (scene_2_subscene == 1) {
+        camPosX = 2500;
+        camPosY = 0;
+        camPosZ = 0;
+        camCentX = 0;
+        camCentY = 0;
+        camCentZ = 0;
+    }
     noStroke();
+    lights();
+    fill(red, 0, 0, 150);
     camera(camPosX, camPosY, camPosZ, camCentX, camCentY, camCentZ, 0, 1, 0);
     if (scene_2_subscene == 2) {
         rotation = time*PI/2;
@@ -277,15 +282,16 @@ void scene2()
     }
     pushMatrix();
     if (scene_2_subscene >= 2) {
+        println("ROTATE!!");
         rotateZ(time);
         red = int(255*abs(sin((float)millis()/2000)));
     }
-    lights();
-    fill(red, 0, 0, 150);
     textureSphere(700, 700, 700, ball_image);
     // sphere(700);
     popMatrix();
 
+    println("SUBSCENE: " + scene_2_subscene);
+    println("ROTATION: "+ rotation);
     pushMatrix();
     if (scene_2_subscene == 3) {
         if (rotation > 3*PI/4) {
@@ -339,6 +345,7 @@ void scene2()
         popMatrix();
     }
     DiamondStar n = new DiamondStar(-810,0,0);
+    popMatrix();
     popMatrix();
 }
 
@@ -844,12 +851,5 @@ Mbox[] makeBoxTower(float x, float y, float z) {
   Mbox[] array = {b1, b2, b3, b4, b5};
   return array;
 }
-
-void loadCrab()
-{
-
-    return;
-}
-
 // ====================================================================================================================================================
 //========================================================================================================================================================
